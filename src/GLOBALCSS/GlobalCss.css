@@ -1,0 +1,604 @@
+/* Google Poppins font import here */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;0,600;0,700;0,800;1,400&display=swap");
+
+/* site common css here  */
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  font-size: 17px;
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+/* Colors variable here */
+:root {
+  --slider-bg: #f0e0ff;
+  --black-color: #000000;
+  --white-color: #ffffff;
+  --btn-bg: #a749ff;
+  --sub-text: #666666;
+  --card-bg: #f6f6f6;
+  --primary-c: #2196f3;
+  --secondary-c: #b2d7f5;
+  --bg: var(--primary-c);
+}
+
+/* Home slider css */
+.sliderWrapper {
+  background: var(--slider-bg);
+  width: 100%;
+  /* height: 100vh; */
+  display: block;
+  overflow: hidden;
+}
+
+.sliderDetails {
+  display: flex;
+  align-items: center;
+}
+
+.sliderArticle {
+  margin-top: 40vh;
+  margin-left: 3%;
+}
+
+.image img.sliderImage {
+  width: 100%;
+  margin-top: 11vh;
+}
+
+.sliderArticle span.tagline {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.sliderArticle h1.Headline {
+  font-size: 60px;
+  font-weight: 500;
+  margin-bottom: 25px;
+}
+
+.shopBtn {
+  padding: 15px 40px;
+  font-size: 18px;
+  background: transparent;
+  border: 1px solid black;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.shopBtn:hover {
+  background: #a749ff;
+  border: 1px solid #a749ff;
+  color: var(--white-color);
+}
+
+.controller span {
+  color: black;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.controller span:hover {
+  color: #9c27b0;
+}
+
+/* Facilities section css here */
+.facilities {
+  padding: 50px 0px;
+}
+
+.facilityWrapper:hover img.facilityIcon {
+  box-shadow: var(--box-shadow-inset);
+  animation: pop 0.5s linear 2;
+}
+
+@keyframes pop {
+  50% {
+    transform: scale(1.4);
+  }
+}
+
+/* Products tabs section css here */
+.areaTitle {
+  margin: auto;
+}
+
+/* Product thumbnail card css here */
+.productWrapper {
+  position: relative;
+}
+
+.productImage {
+  cursor: pointer;
+}
+
+.buttons {
+  display: block;
+  width: 100%;
+  height: 45px;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+}
+
+button.wishAndView {
+  background: var(--btn-bg);
+  border: none;
+  font-family: "Poppins";
+  color: white;
+  width: 25%;
+  height: 45px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button.cartBtn {
+  background: var(--btn-bg);
+  color: var(--white-color);
+  width: 50%;
+  font-size: 17px;
+  height: 45px;
+  border: none;
+  border-left: 1px solid rgb(207, 207, 207);
+  border-right: 1px solid rgb(207, 207, 207);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button.wishListCartBtn {
+  background: var(--btn-bg);
+  color: var(--white-color);
+  width: 80%;
+  font-size: 17px;
+  border-radius: 100px;
+  height: 45px;
+  border: none;
+  border-left: 1px solid rgb(207, 207, 207);
+  border-right: 1px solid rgb(207, 207, 207);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button.wishAndView:hover {
+  background: var(--black-color);
+}
+
+button.wishListCartBtn:hover {
+  background: var(--black-color);
+}
+
+button.cartBtn:hover {
+  background: var(--black-color);
+}
+
+.buttons {
+  position: absolute;
+  bottom: 8px;
+  left: 0px;
+  display: none;
+}
+
+.productCard:hover .buttons {
+  display: block;
+  animation: fadein 0.3s ease-in;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.detals {
+  text-align: center;
+}
+
+span.deactivePrice {
+  text-decoration: line-through;
+  color: #8f8787;
+}
+
+span.saleBadge {
+  position: absolute;
+  background: var(--btn-bg);
+  color: var(--white-color);
+  padding: 2px 8px;
+  font-size: 16px;
+  left: 5px;
+  top: 10px;
+  border-radius: 3px;
+  font-family: "Poppins";
+}
+
+a.titleLink {
+  text-decoration: none;
+  color: var(--black-color);
+  cursor: pointer;
+}
+
+a.titleLink:hover {
+  color: #9c27b0;
+  transition: 0.3s;
+}
+
+/* Breadcrumb css here */
+.breadCrumbArea {
+  padding: 30px 0px;
+  background: #e6e6e7;
+  text-align: center;
+}
+
+.breadcrumbNavigation {
+  display: flex;
+  justify-content: center;
+}
+
+/* Shop topbar search area css here */
+input#shopTopBarSearchInput {
+  width: 98%;
+  padding: 10px 5px;
+  font-size: 18px;
+  font-family: "Poppins";
+  border: 1px solid #e1dede;
+  outline: none;
+}
+
+/* Not mathed message css here */
+img.errImg {
+  width: 100%;
+  height: 100%;
+}
+
+h1.errMssg {
+  color: #444;
+  text-align: center;
+}
+.errorMessage {
+  margin: auto;
+  padding: 100px 0px;
+}
+
+/* Filtering products by prices */
+button.priceFilterBtn {
+  padding: 5px 10px;
+  background: var(--btn-bg);
+  border: none;
+  color: var(--white-color);
+  font-size: 18px;
+  font-family: "Poppins";
+  letter-spacing: 1px;
+  border-radius: 41px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button.priceFilterBtn2 {
+  padding: 5px 10px;
+  background: #e6a9f1;
+  border: none;
+  color: var(--white-color);
+  font-size: 18px;
+  font-family: "Poppins";
+  letter-spacing: 1px;
+  border-radius: 41px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+input.pricesField {
+  padding: 8px 10px;
+  width: 95%;
+  margin: 5px 0px;
+  border: 1px solid #cdc1c1;
+  font-size: 18px;
+}
+
+/* Sinlge product page css here */
+.rattingAndReviws {
+  display: flex; /* align-items: center; */
+}
+
+.actionButtons {
+  margin: 35px 0px 10px 0px;
+  display: flex;
+  align-items: center;
+}
+
+button.counterBtn {
+  color: #555;
+  cursor: pointer;
+  font-size: 25px;
+  border: none;
+  padding: 3px;
+  background: transparent;
+}
+
+span.counterValue {
+  font-size: 25px;
+  color: #555;
+  margin: 0px 10px;
+}
+
+button.addToCartBtn {
+  margin: 0px 30px;
+  width: 150px;
+  height: 45px;
+  font-size: 18px;
+  color: var(--white-color);
+  border: none;
+  background: var(--btn-bg);
+  font-family: "Poppins";
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button.addToCartBtn:hover {
+  background: var(--black-color);
+}
+
+span.wishAndCompareBtn {
+  color: #555;
+  margin: 0px 10px;
+  font-size: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+span.wishAndCompareBtn:hover {
+  color: var(--btn-bg);
+}
+
+span.taxonomyItema {
+  color: #555;
+}
+
+button.crossBtn {
+  color: rgb(0 0 0);
+  padding: 0px 10px;
+  border-radius: 100px;
+  font-size: 30px;
+  background: var(--btn-bg);
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+}
+
+button.crossBtn:hover {
+  color: var(--white-color);
+  background: #4b0657;
+}
+
+img.wishListProductimage {
+  width: 200px;
+  height: 250px;
+}
+
+.scrollingITems {
+  position: fixed;
+  background: white;
+  border-radius: 10px;
+  right: 7%;
+  top: 11%;
+  width: 25%;
+  height: 80%;
+  z-index: 200;
+}
+
+.scrollingCartItems {
+  scroll-behavior: smooth;
+  overflow-y: auto;
+  height: 70%;
+}
+
+button.scrollingItemCrossBtn {
+  background: var(--btn-bg);
+  border: none;
+  color: var(--white-color);
+  padding: 2px 6px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 40px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+button.scrollingItemCrossBtn:hover {
+  background: var(--black-color);
+}
+
+.notFoundMsg {
+  text-align: center;
+  margin: 50px auto;
+}
+
+h1.errMssg {
+  font-size: 15px;
+  text-align: center;
+}
+
+button.checkoutandviewCartBtn {
+  width: 100%;
+  height: 50px;
+  font-size: 20px;
+  margin: 10px 0px;
+  background: transparent;
+  border: 1px solid black;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-family: "Poppins";
+  transition: 0.3s;
+}
+
+button.checkoutandviewCartBtn:hover {
+  background: var(--btn-bg);
+  color: var(--white-color);
+  border: none;
+}
+
+button.btnButton {
+  width: 100%;
+  height: 45px;
+  background: var(--btn-bg);
+  border: none;
+  font-size: 20px;
+  font-family: "Poppins";
+  color: var(--white-color);
+  margin-top: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 100px;
+}
+
+button.btnButton:hover {
+  background: var(--black-color);
+}
+
+input.couponFiled {
+  width: 97%;
+  padding: 12px 0px 12px 5px;
+  border: 1px solid #ccc;
+  font-size: 17px;
+  outline: none;
+  font-family: "Poppins";
+}
+
+#inputFiled {
+  width: 95%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+  font-size: 18px;
+  outline: none;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+/* Respomsive css here */
+
+@media only screen and (max-width: 992px) {
+  .gifLoader3 {
+    position: fixed;
+    top: 40%;
+    text-align: center;
+    margin: auto;
+    width: 98% !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .scrollingITems {
+    position: fixed;
+    background: white;
+    border-radius: 10px;
+    right: 7%;
+    top: 11%;
+    width: 90%;
+    height: 80%;
+    z-index: 200;
+  }
+  .sliderArticle {
+    margin-top: 30vh;
+    margin-left: 0%;
+  }
+
+  .sliderArticle h1.Headline {
+    font-size: 70px;
+    font-weight: 500;
+    margin-bottom: 25px;
+  }
+
+  img.wishListProductimage {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .sliderArticle h1.Headline {
+    font-size: 50px;
+    font-weight: 500;
+    margin-bottom: 25px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .sliderArticle h1.Headline {
+    font-size: 50px;
+    font-weight: 500;
+    margin-bottom: 25px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .sliderArticle span.tagline {
+    font-size: 20px;
+  }
+
+  .sliderArticle h1.Headline {
+    font-size: 38px;
+  }
+
+  .shopBtn {
+    padding: 10px 30px;
+  }
+
+  button.addToCartBtn {
+    margin: 0px 10px;
+    width: 115px;
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .sliderArticle span.tagline {
+    font-size: 15px;
+  }
+
+  .sliderArticle h1.Headline {
+    font-size: 30px;
+  }
+}
+
+/* Loader gif css here */
+.gifLoader {
+  position: fixed;
+  top: 40%;
+  text-align: center;
+  margin: auto;
+  width: 100%;
+}
+
+.gifLoader2 {
+  position: fixed;
+  top: 40%;
+  text-align: center;
+  margin: auto;
+  width: 85%;
+}
+
+.gifLoader3 {
+  position: fixed;
+  top: 40%;
+  text-align: center;
+  margin: auto;
+  width: 65%;
+}
+
+img.gif {
+  text-align: center;
+  width: 80px;
+  background: hsl(274, 85%, 54%);
+  padding: 10px;
+  border-radius: 100px;
+}
