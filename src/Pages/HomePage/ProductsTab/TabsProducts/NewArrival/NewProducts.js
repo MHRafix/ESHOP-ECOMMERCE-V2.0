@@ -8,7 +8,7 @@ import Card from '../ProductCard/Card';
 const NewProducts = () => {
     // Import product data from redux using custom hooks
     const gotData = useSelector((state) => state.allProducts.products);
-    const { loading } = useGet('products');
+    const { loading } = useGet('newArrivalProducts');
 
     // Carted product data saved  to the database
     const { handlePost, posting, success, setSuccess, alertText } = usePost();
