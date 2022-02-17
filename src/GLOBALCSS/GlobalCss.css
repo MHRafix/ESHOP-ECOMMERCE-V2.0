@@ -317,14 +317,14 @@ input.pricesField {
 button.counterBtn {
   color: #555;
   cursor: pointer;
-  font-size: 25px;
+  font-size: 17px;
   border: none;
   padding: 3px;
   background: transparent;
 }
 
 span.counterValue {
-  font-size: 25px;
+  font-size: 15px;
   color: #555;
   margin: 0px 10px;
 }
@@ -333,6 +333,7 @@ button.addToCartBtn {
   margin: 0px 30px;
   width: 150px;
   height: 45px;
+  border-radius: 50px;
   font-size: 18px;
   color: var(--white-color);
   border: none;
@@ -365,9 +366,9 @@ span.taxonomyItema {
 
 button.crossBtn {
   color: rgb(0 0 0);
-  padding: 0px 10px;
+  padding: 0px 6px;
   border-radius: 100px;
-  font-size: 30px;
+  font-size: 20px;
   background: var(--btn-bg);
   cursor: pointer;
   border: none;
@@ -380,8 +381,8 @@ button.crossBtn:hover {
 }
 
 img.wishListProductimage {
-  width: 200px;
-  height: 250px;
+  width: 115px;
+  height: 150px;
 }
 
 .scrollingITems {
@@ -482,6 +483,56 @@ input.couponFiled {
   outline: none;
   margin-bottom: 20px;
   font-weight: 500;
+}
+
+.loginPageWrapper {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.formArea {
+  width: 30%;
+  margin: auto;
+}
+
+h2.formTitle {
+  font-size: 35px;
+  font-family: "Poppins";
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+input#loginFormfiled {
+  padding: 10px 5px;
+  font-size: 17px;
+  margin: 8px 0px;
+  border: 0px;
+  font-family: "Poppins";
+  font-weight: 300;
+  outline: none;
+}
+
+button.loginBtn {
+  background: transparent;
+  border: none;
+  font-family: "Poppins";
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  color: #000;
+  cursor: pointer;
+  padding: 8px 25px;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+button.loginBtn:hover {
+  background: var(--btn-bg);
+  color: var(--white-color);
 }
 
 /* Respomsive css here */

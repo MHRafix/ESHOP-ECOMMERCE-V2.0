@@ -1,8 +1,9 @@
 import { CircularProgress } from '@mui/material';
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import useGet from '../../CustomHooks/useGet';
-import Header from '../SharedComponents/Header/Header';
+import { removeSelectedProducts, selectedProducts } from '../../redux/actions/productActions';
 import SingleInfo from './SingleProductInfo/SingleInfo';
 
 const SingleProductMain = () => {
@@ -10,12 +11,32 @@ const SingleProductMain = () => {
     const { productId } = useParams();
     
     // Load data from the server by using dynamic url
+    const [ loading, setLoading ] = useState(false);
     const dependency = `shop/singleProducts/${productId}`;
-    const { loading, gotData } = useGet(dependency);
+    
+    const gotData = useSelector((state) => state.singleProduct);
+    const dispatch = useDispatch();
+    console.log(gotData);
+    
+    const getSingleProduct = async () => {
+        setLoading(true);
+        const res =  await axios.get(`https://rocky-bastion-69611.herokuapp.com/${dependency}`).catch((err) => {
+            console.log("Error", err);
+        })
+        dispatch(selectedProducts(res.data));
+        setLoading(false);
+    }
+    
+    
+    useEffect(() => {
+        if(productId !== "") getSingleProduct();
+        return () => {
+            dispatch(removeSelectedProducts());
+        }
+    }, [productId]);
 
     return (
         <>
-         <Header />
          {loading ? <div style={{margin: 'auto', textAlign: 'center', marginTop: '50px'}}><CircularProgress sx={{ textAlign: 'center', margin: 'auto'}} mt={3} color="secondary" /></div> : <SingleInfo data={gotData} />}
         </>
     );

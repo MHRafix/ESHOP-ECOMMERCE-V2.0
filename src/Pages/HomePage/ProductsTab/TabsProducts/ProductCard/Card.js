@@ -20,7 +20,7 @@ const Card = ({ data, col, handlePost }) => {
   const { _id, productTitle, thumbnail, regularPrice, salePrice, ratingsandreviews
   } = data;
   
-  // Let's calculat the average rating and reviews here
+  // Let's calculate the average rating and reviews here
   let averageRating = 0;
   if(ratingsandreviews){
     for(const ratAndRev of ratingsandreviews){
@@ -35,6 +35,7 @@ const Card = ({ data, col, handlePost }) => {
     size: 'M',
     quantity: 1
   };
+
     return (
       <Grid item mb={4} xs={12} md={col} data-aos="fade-up">
           <div className="productCard">
@@ -47,7 +48,10 @@ const Card = ({ data, col, handlePost }) => {
               </div>
               <div className="buttons">
                 <button className="wishAndView"
-                onClick={() => handlePost(cartedProductData, 'addToWishList')}><FavoriteBorderIcon sx={{ fontSize: 20, paddingTop: '5px'}} /></button>
+                onClick={() => {
+                  // ADD_WISHLIST_PRODUCTS(cartedProductData);
+                  handlePost(cartedProductData, 'addToWishList');
+                  }}><FavoriteBorderIcon sx={{ fontSize: 20, paddingTop: '5px'}} /></button>
                 <button
                 className="cartBtn"
                 onClick={() => handlePost(cartedProductData, 'addToCartList')}><ShoppingCartOutlinedIcon sx={{ fontSize: 20, paddingTop: '5px'}} /></button>

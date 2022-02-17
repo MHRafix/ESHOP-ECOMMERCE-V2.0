@@ -3,7 +3,8 @@ import './GLOBALCSS/GlobalCss.css';
 import CartListMain from './Pages/CartListPage/CartListMain';
 import CheckoutMain from './Pages/CheckoutPage/CheckoutMain';
 import HomeMain from './Pages/HomePage/HomeMain';
-import NewsLetterModal from './Pages/SharedComponents/Modals/NewsLetterModal';
+import Login from './Pages/LoginPage/Login';
+import Header from './Pages/SharedComponents/Header/Header';
 import ShopMain from './Pages/ShopPage/ShopMain';
 import SingleProductMain from './Pages/SingleProductPage/SingleProductMain';
 import WishListMain from './Pages/WishListPage/WishListMain';
@@ -11,8 +12,9 @@ import WishListMain from './Pages/WishListPage/WishListMain';
 function App() {
   return (
     <div className="App">
-         <NewsLetterModal />
+         {/* <NewsLetterModal /> */}
       <BrowserRouter>
+      <Header />
        <Switch>
          <Route exact path="/">
             <HomeMain />
@@ -31,6 +33,9 @@ function App() {
          </Route>
          <Route exact path="/checkout">
             <CheckoutMain />
+         </Route>
+         <Route exact path="/cpannel/admin/login">
+            <Login />
          </Route>
          <Route exact path="/shop/products/singleProducts/:productId">
             <SingleProductMain />

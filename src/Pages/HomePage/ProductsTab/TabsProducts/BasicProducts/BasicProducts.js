@@ -1,13 +1,15 @@
 import { Alert, CircularProgress, Grid, Snackbar } from '@mui/material';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import useGet from '../../../../../CustomHooks/useGet';
 import usePost from '../../../../../CustomHooks/usePost';
 import GifLoader from '../../../../../Images/ICONS/loadingGif.gif';
 import Card from '../ProductCard/Card';
 
 const BasicProducts = () => {
-    // Import data from the customhooks
-    const { loading, gotData } = useGet('products');
+    // Import product data from redux using custom hooks
+    const gotData = useSelector((state) => state.allProducts.products);
+    const { loading } = useGet('products');
     
     // Carted product data saved  to the database
     const { handlePost, posting, success, setSuccess, alertText } = usePost();
@@ -28,7 +30,7 @@ const BasicProducts = () => {
                  {alertText}
                 </Alert>
             </Snackbar>
-            {loading ? <CircularProgress sx={{ textAlign: 'center', margin: 'auto'}} mt={3} color="secondary" /> : <>{gotData.map(data => <Card key={data._id} data={data} col={3} handlePost={handlePost} />)}</>}
+            {loading ? <CircularProgress sx={{ textAlign: 'center', margin: 'auto'}} mt={3} color="secondary" /> : <>{gotData?.map(data => <Card key={data._id} data={data} col={3} handlePost={handlePost} />)}</>}
             {posting && <div className="gifLoader2">
             <img className="gif" src={GifLoader} alt="loader" />
             </div>

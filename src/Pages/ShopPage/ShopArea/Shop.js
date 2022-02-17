@@ -1,8 +1,10 @@
 import CalendarViewMonthOutlinedIcon from '@mui/icons-material/CalendarViewMonthOutlined';
 import GridViewIcon from '@mui/icons-material/GridView';
 import ViewComfyOutlinedIcon from '@mui/icons-material/ViewComfyOutlined';
-import { Alert, CircularProgress, Container, Grid, Snackbar, Typography } from '@mui/material';
+import { Alert, CircularProgress, Container, Grid, Pagination, Snackbar, Typography } from '@mui/material';
+import Stack from '@mui/material/Stack';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import useGet from '../../../CustomHooks/useGet';
 import usePost from '../../../CustomHooks/usePost';
 import GifLoader from '../../../Images/ICONS/loadingGif.gif';
@@ -15,8 +17,11 @@ const Shop = () => {
     // Import data from the customhooks
     const [ dependency, setDependency ] = useState('products');
     const [ layout, setLayout ] = useState(4);
-    const { loading, gotData } = useGet(dependency);
-
+    
+    // Import product data from redux using custom hooks
+    const gotData = useSelector((state) => state.allProducts.products);
+    const { loading } = useGet(dependency);
+    
     // Handle product searching here
     const handleSearchProducts = (e) => {
         if(e.target.value){
@@ -124,6 +129,12 @@ const Shop = () => {
                         /> : <>
                         {gotData.length ? <>
                         {gotData.map(data => <Card key={data._id} data={data} col={layout} handlePost={handlePost} />)}
+                        <div className="pagination" style={{fontFamily: 'Poppins', fontWeight: 500, margin: '20px 0px'}}>
+                            <Stack spacing={2}>
+                                <Pagination count={10} color="secondary"  sx={{margin: 'auto'}} />
+                            </Stack>
+                        </div>
+                  
                         </>: <div className="errorMessage">
                                 <img src={ErrImage} width='200' height='200' alt="errImage" className="errImg" />
                                 <h1 className="errMssg">No Products Matched...!</h1>

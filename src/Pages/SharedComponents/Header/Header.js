@@ -14,15 +14,14 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import useGet from '../../../CustomHooks/useGet';
 import ScrollingCartList from './ScrollingCartList';
 import WishListBtn from './WishListBtn';
-
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-
+  const productsData = useSelector((state) => state.allProducts.products);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -132,9 +131,10 @@ const Header = () => {
     },
   });
 
-  // Import data from custom hooks
-  const { gotData } = useGet('getFromCartList');
-
+  // Import product data from redux using custom hooks
+  const gotData = useSelector((state) => state.allProducts.products);
+  // const { loading } = useGet('getFromCartList');
+    
   const [ scrollingCartList, setScrollingCartList ] = useState(false);
   return (
     <Box >
@@ -191,7 +191,7 @@ const Header = () => {
                       }
                       }}
                     >
-                    <Badge badgeContent={gotData.length} color="secondary">
+                    <Badge badgeContent={productsData.length} color="secondary">
                         <ShoppingBagOutlinedIcon />
                     </Badge>
                     </IconButton>

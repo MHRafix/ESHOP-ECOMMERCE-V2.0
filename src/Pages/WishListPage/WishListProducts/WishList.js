@@ -1,5 +1,6 @@
 import { CircularProgress, Container, Grid, Typography } from '@mui/material';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import useGet from '../../../CustomHooks/useGet';
 import CartIcon from '../../../Images/ICONS/cartIcon.png';
@@ -16,8 +17,11 @@ const WishList = () => {
         getUrl = 'getFromCartList';
     };
     
-    // Import data from custom hooks
-    const { loading, gotData } = useGet(getUrl);
+    // Import product data from redux using custom hooks
+    const gotData = useSelector((state) => state.wishlistAllProducts.wishlistProducts);
+    const { loading } = useGet(getUrl);
+    console.log(gotData);
+    
     return (
         <section>
             <div className="wishListWrapper">
@@ -36,13 +40,13 @@ const WishList = () => {
                     </div> <br />
                     
                     <Grid container sx={{alignItems: 'center'}}>
-                        <Grid item xs={presentPath === '/wishlist' ? 2.4 : 2} md={presentPath === '/wishlist' ? 2.4 : 2} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 16}}}>{'image'.toUpperCase()}</Grid>
-                        <Grid item xs={presentPath === '/wishlist' ? 2.4 : 2} md={presentPath === '/wishlist' ? 2.4 : 2} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 16}}}>{'product name'.toUpperCase()}</Grid>
-                        <Grid item xs={presentPath === '/wishlist' ? 2.4 : 2} md={presentPath === '/wishlist' ? 2.4 : 2} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 16}}}>{'unit price'.toUpperCase()}</Grid>
-                        {presentPath === '/wishlist' && <Grid item xs={2.4} md={2.4} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 16}}}>{'add to cart'.toUpperCase()}</Grid>}
-                        {presentPath === '/cartlist' && <Grid item xs={2} md={2} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 16}}}>{'Quantity'.toUpperCase()}</Grid>}
-                        {presentPath === '/cartlist' && <Grid item xs={2} md={2} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 16}}}>{'sub total'.toUpperCase()}</Grid>}
-                        <Grid item xs={presentPath === '/wishlist' ? 2.4 : 2} md={presentPath === '/wishlist' ? 2.4 : 2} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 16}}}>{'Action'.toUpperCase()}</Grid>
+                        <Grid item xs={presentPath === '/wishlist' ? 2.4 : 2} md={presentPath === '/wishlist' ? 2.4 : 2} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 14}}}>{'image'.toUpperCase()}</Grid>
+                        <Grid item xs={presentPath === '/wishlist' ? 2.4 : 2} md={presentPath === '/wishlist' ? 2.4 : 2} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 14}}}>{'product name'.toUpperCase()}</Grid>
+                        <Grid item xs={presentPath === '/wishlist' ? 2.4 : 2} md={presentPath === '/wishlist' ? 2.4 : 2} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 14}}}>{'unit price'.toUpperCase()}</Grid>
+                        {presentPath === '/wishlist' && <Grid item xs={2.4} md={2.4} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 14}}}>{'add to cart'.toUpperCase()}</Grid>}
+                        {presentPath === '/cartlist' && <Grid item xs={2} md={2} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 14}}}>{'Quantity'.toUpperCase()}</Grid>}
+                        {presentPath === '/cartlist' && <Grid item xs={2} md={2} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 14}}}>{'sub total'.toUpperCase()}</Grid>}
+                        <Grid item xs={presentPath === '/wishlist' ? 2.4 : 2} md={presentPath === '/wishlist' ? 2.4 : 2} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 14}}}>{'Action'.toUpperCase()}</Grid>
                     </Grid>
                     {gotData.map(data => <WishListTable data={data} />)}
                   </> : <div className="errorMessage" style={{textAlign: 'center'}}>

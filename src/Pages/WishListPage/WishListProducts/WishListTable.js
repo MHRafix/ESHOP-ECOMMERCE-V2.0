@@ -36,9 +36,9 @@ const WishListTable = ({data}) => {
                 </Snackbar>
             <Grid item xs={presentPath === '/wishlist' ? 2.4 : 2} md={presentPath === '/wishlist' ? 2.4 : 2} sx={{textAlign: 'center', color: '#555'}}>  <img className="wishListProductimage" src={thumbnail} alt="wishListProduct" />
             </Grid>
-            <Grid item md={presentPath === '/wishlist' ? 2.4 : 2} sx={{textAlign: 'center', color: '#555', fontSize: {xs: 11, md: 18}, display: 'block'}}>{productTitle}</Grid>
+            <Grid item md={presentPath === '/wishlist' ? 2.4 : 2} sx={{textAlign: 'center', color: '#555', fontSize: {xs: 11, md: 15}, display: 'block'}}>{productTitle}</Grid>
             {presentPath === '/wishlist' && <Grid item xs={presentPath === '/wishlist' ? 2.4 : 2} md={presentPath === '/wishlist' ? 2.4 : 2} sx={{textAlign: 'center', color: '#555'}}>
-                <Typography sx={{ fontFamily: 'Poppins', textAlign: 'center', marginTop: '5px', fontSize: {xs: 10, md: 18}}}>
+                <Typography sx={{ fontFamily: 'Poppins', textAlign: 'center', marginTop: '5px', fontSize: {xs: 10, md: 15}}}>
                     {salePrice !== '0' && <><span className="activePrice">
                     ${salePrice}
                     </span>&nbsp;
@@ -49,7 +49,7 @@ const WishListTable = ({data}) => {
                 </Typography>
             </Grid>}
             {presentPath === '/cartlist' && <Grid item xs={presentPath === '/wishlist' ? 2.4 : 2} md={presentPath === '/wishlist' ? 2.4 : 2} sx={{textAlign: 'center', color: '#555'}}>
-                <Typography sx={{ fontFamily: 'Poppins', textAlign: 'center', marginTop: '5px', fontSize: {xs: 10, md: 18}}}>
+                <Typography sx={{ fontFamily: 'Poppins', textAlign: 'center', marginTop: '5px', fontSize: {xs: 10, md: 15}}}>
                     {salePrice !== '0' ? <span className="activePrice">
                     ${salePrice} 
                     </span> : <span className='activePrice'>
@@ -60,7 +60,7 @@ const WishListTable = ({data}) => {
             {presentPath === '/wishlist' && <Grid item xs={2.4} md={2.4} sx={{textAlign: 'center', color: '#555'}}>
             <button className="wishListCartBtn"
             onClick={() => handlePost(cartedProductData, 'addToCartList')}
-            ><ShoppingCartOutlinedIcon sx={{ fontSize: 20, paddingTop: '5px'}} /></button>
+            ><ShoppingCartOutlinedIcon sx={{ fontSize: 15, paddingTop: '5px'}} /></button>
             </Grid>}
             {presentPath === '/cartlist' && <Grid item xs={2} md={2} sx={{textAlign: 'center', color: '#555'}}>
             <button className="counterBtn" onClick={() => {
@@ -80,7 +80,7 @@ const WishListTable = ({data}) => {
                         }}>+</button>
 
             </Grid>}
-            {presentPath === '/cartlist' && <Grid item xs={2} md={2} sx={{textAlign: 'center', color: '#555'}}>
+            {presentPath === '/cartlist' && <Grid item xs={2} md={2} sx={{textAlign: 'center', color: '#555', fontSize: 15}}>
                     ${Math.ceil(quantity * salePrice)}
             </Grid>}
             <Grid item xs={presentPath === '/wishlist' ? 2.4 : 2} md={presentPath === '/wishlist' ? 2.4 : 2} sx={{textAlign: 'center'}}>

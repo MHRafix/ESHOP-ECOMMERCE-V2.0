@@ -56,10 +56,10 @@ function ProductQuickView({open, data, setOpen}) {
             </Typography>
             <Grid container spacing={2} sx={{justifyContent: 'space-between'}}>
                     {/* Single product slider here */}
-                    <ProductSlider key="4" slidersThumbnails={data?.thumbnails} />
+                    <ProductSlider key={data?.thumbnails} slidersThumbnails={data?.thumbnails} />
                     
                     {/* Single product detaild here  */}
-                    <ProductDetails key="1" productDetails={data} handlePost={handlePost} />
+                    <ProductDetails key={data} productDetails={data} handlePost={handlePost} />
                     {posting && <div className="gifLoader">
                           <img className="gif" src={GifLoader} alt="loader" />
                         </div>

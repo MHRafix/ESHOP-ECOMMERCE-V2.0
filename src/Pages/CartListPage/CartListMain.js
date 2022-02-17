@@ -1,6 +1,5 @@
 import React from 'react';
 import BreadCrumb from '../SharedComponents/BreadCrumb/BreadCrumb';
-import Header from '../SharedComponents/Header/Header';
 import WishList from '../WishListPage/WishListProducts/WishList';
 
 const CartListMain = () => {
@@ -10,7 +9,6 @@ const CartListMain = () => {
     };
     return (
         <>
-        <Header />
          <BreadCrumb breadcrumbNavigation={navigation} />
          <br /><br />
          <WishList />

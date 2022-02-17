@@ -5,9 +5,10 @@ import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import { Grid, Radio, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import Rating from 'react-rating';
-
+import { useDispatch } from 'react-redux';
 const ProductDetails = ({productDetails, handlePost}) => {
     const [ quantity, setQuantity ] = useState(1);
+    const disPatch = useDispatch();
     // Let's destructuring the data from the productDetails object
     const { productTitle, regularPrice, salePrice, ratingsandreviews, sizes, category } = productDetails;
 
@@ -39,8 +40,7 @@ const ProductDetails = ({productDetails, handlePost}) => {
         size: selectedSize,
         quantity: quantity
     };
-    
-      
+
     return (
     <Grid item xs={12} md={6}>
         <div className="productDetils">
@@ -104,20 +104,39 @@ const ProductDetails = ({productDetails, handlePost}) => {
                         }}>-</button>
                     <span className="counterValue">{quantity}</span>
                     <button className="counterBtn" onClick={() => {
-                        if( quantity === 100 ){
-                            alert('Maximum quantity must be 10000...!');
+                        if( quantity === 20 ){
+                            alert('Maximum quantity must be 20...!');
                         }else{
                             setQuantity(quantity + 1);
                         }
                         }}>+</button>
 
-                    <button className="addToCartBtn"onClick={() => handlePost(cartedProductData, 'addToCartList')}>Add To Cart</button>
-
-                    <span className="wishAndCompareBtn" onClick={() => handlePost(cartedProductData, 'addToWishList')}><FavoriteBorderIcon /></span>
-                    <span className="wishAndCompareBtn"><CompareArrowsIcon /></span>
+                    <button 
+                    className="addToCartBtn"
+                    onClick={() => 
+                    handlePost(
+                     cartedProductData, 
+                     'addToCartList'
+                    )}>
+                         Add To Cart
+                    </button>
+                    <span 
+                    className="wishAndCompareBtn" 
+                    onClick={() => 
+                    handlePost(
+                    cartedProductData, 
+                    'addToWishList'
+                    )}>
+                    <FavoriteBorderIcon />
+                    </span>
+                    <span 
+                    className="wishAndCompareBtn"
+                    >
+                    <CompareArrowsIcon />
+                    </span>
                 </div>
                 <div className="taxonomy">
-                    <span className="taxonomyItema">Category: {category}</span>
+                 <span className="taxonomyItema">Category: {category}</span>
             </div>
         </div>
     </Grid>

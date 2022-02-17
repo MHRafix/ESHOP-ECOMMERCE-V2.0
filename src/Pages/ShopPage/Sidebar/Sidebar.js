@@ -1,13 +1,18 @@
 import { CircularProgress } from '@mui/material';
 import Radio from '@mui/material/Radio';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import useGet from '../../../CustomHooks/useGet';
-const Sidebar = ({dpend, dependency}) => {
+const Sidebar = ({dpend}) => {
     const [ selectedCategory, setSelectedCategory ] = useState('all');
     const [ selectedSize, setSelectedSize ] = useState('all');
     const [ minPrice, setMinPrice ] = useState('0');
     const [ maxPrice, setMaxPrice ] = useState('10000');
 
+    // Import product data from redux using custom hooks
+    const gotData = useSelector((state) => state.allProducts.products);
+    const { loading } = useGet('products');
+    
     // Handle products categories here
     const handleChangeCategory = (event) => {
       if(event.target.value === 'all'){
@@ -31,9 +36,6 @@ const Sidebar = ({dpend, dependency}) => {
     }
     setSelectedSize(event.target.value);
     };
-    
-    // Get data from the server
-    const { loading, gotData } = useGet('products');
     
     // Findout all categories
     let categoriesArr = ['all'];
