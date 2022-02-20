@@ -20,8 +20,13 @@ const WishList = () => {
     // Import product data from redux using custom hooks
     const gotData = useSelector((state) => state.wishlistAllProducts.wishlistProducts);
     const { loading } = useGet(getUrl);
-    console.log(gotData);
-    
+
+    // Total price count here
+    let totalPrice = 0;
+    for(const data of gotData){
+        const price = Number(data?.cartedProduct?.salePrice);
+        totalPrice = totalPrice + price;
+    }
     return (
         <section>
             <div className="wishListWrapper">
@@ -54,7 +59,7 @@ const WishList = () => {
                             <h1 className="errMssg">No items found in {presentPath === '/wishlist' ? 'wishlist' : 'cartlist'}...!</h1> <br />
                             <Link to='/shop' style={{textDecoration: 'none', fontFamily: 'Poppins', background: 'var(--btn-bg)', color: '#fff', padding: '10px 30px', marginTop: '20px'}}>Add Items</Link>
                         </div>}
-                        {presentPath === '/cartlist' && <CartTotalCard />}
+                        {presentPath === '/cartlist' && <CartTotalCard totalPrice={totalPrice} />}
                 </Container>}
             </div>
         </section>

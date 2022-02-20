@@ -16,7 +16,7 @@ const useGet = (url) => {
             dispatch(setWishListProducts(res.data));
         }else if(url === "getFromWishList"){
             dispatch(setWishListProducts(res.data));
-        }else{
+        }else if(url === "allProductsForCatAndSizes"){}else{
             dispatch(setProducts(res.data));
         }
         setLoading(false);

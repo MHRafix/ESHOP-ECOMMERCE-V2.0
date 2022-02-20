@@ -1,8 +1,9 @@
 import { CircularProgress } from '@mui/material';
 import Radio from '@mui/material/Radio';
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import useGet from '../../../CustomHooks/useGet';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setProductsForCategoriesAndSizes } from '../../../redux/actions/productActions';
 const Sidebar = ({dpend}) => {
     const [ selectedCategory, setSelectedCategory ] = useState('all');
     const [ selectedSize, setSelectedSize ] = useState('all');
@@ -10,8 +11,26 @@ const Sidebar = ({dpend}) => {
     const [ maxPrice, setMaxPrice ] = useState('10000');
 
     // Import product data from redux using custom hooks
-    const gotData = useSelector((state) => state.allProducts.products);
-    const { loading } = useGet('products');
+
+    // Get products from redux store for getting all categories and sizes
+    const gotData = useSelector((state) => state.allCatAndSizProducts.allCategoriesAndSizesProducts);
+    const [ loading, setLoading ] = useState(false);
+    const dispatch = useDispatch();
+    const getProducts = async () => {
+        setLoading(true);
+        const res = await axios.get("https://rocky-bastion-69611.herokuapp.com/products").catch((err) => {
+            console.log("Error", err);
+        });
+        
+        dispatch(setProductsForCategoriesAndSizes(res.data));
+        setLoading(false);
+
+        
+    }
+
+    useEffect(() => {
+        getProducts();
+    }, []);
     
     // Handle products categories here
     const handleChangeCategory = (event) => {

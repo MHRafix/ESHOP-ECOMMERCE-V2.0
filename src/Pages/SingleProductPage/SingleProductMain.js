@@ -1,4 +1,3 @@
-import { CircularProgress } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -37,7 +36,7 @@ const SingleProductMain = () => {
 
     return (
         <>
-         {loading ? <div style={{margin: 'auto', textAlign: 'center', marginTop: '50px'}}><CircularProgress sx={{ textAlign: 'center', margin: 'auto'}} mt={3} color="secondary" /></div> : <SingleInfo data={gotData} />}
+          <SingleInfo data={gotData} loading={loading} />
         </>
     );
 };

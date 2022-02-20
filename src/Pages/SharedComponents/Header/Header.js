@@ -61,8 +61,8 @@ const Header = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}><Link to="/myProfile">Profile</Link></MenuItem>
-      <MenuItem onClick={handleMenuClose}><Link to="/login">My account</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link to="/userAccount/user/myProfile">Profile</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link to="/userAccount/user/login">My account</Link></MenuItem>
     </Menu>
   );
 

@@ -17,7 +17,7 @@ const Card = ({ data, col, handlePost }) => {
   useAnimation();
 
   // Let's destucturing the product data from the data object
-  const { _id, productTitle, thumbnail, regularPrice, salePrice, ratingsandreviews
+  const { _id, productTitle, thumbnail, thumbnails, regularPrice, salePrice, ratingsandreviews
   } = data;
   
   // Let's calculate the average rating and reviews here
@@ -44,7 +44,9 @@ const Card = ({ data, col, handlePost }) => {
                 {salePrice !== '0' && <span className="saleBadge">-{
                   Math.ceil(((regularPrice - salePrice) / (regularPrice / 100)))
                 }%</span>}
-                  <Link to={`shop/products/singleProducts/${_id}`}><img style={{width: '100%'}} src={thumbnail} alt="productThumbnail" /></Link>
+                  <Link to={`shop/products/singleProducts/${_id}`}>
+                    <img className='firstImage' style={{width: '100%'}} src={thumbnail} alt="productThumbnail" />
+                  </Link>
               </div>
               <div className="buttons">
                 <button className="wishAndView"

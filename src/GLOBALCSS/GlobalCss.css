@@ -32,7 +32,6 @@ body {
 .sliderWrapper {
   background: var(--slider-bg);
   width: 100%;
-  /* height: 100vh; */
   display: block;
   overflow: hidden;
 }
@@ -488,55 +487,174 @@ input.couponFiled {
 .loginPageWrapper {
   display: flex;
   width: 100%;
-  height: 100vh;
+  height: auto;
   align-items: center;
   justify-content: center;
 }
 
 .formArea {
-  width: 30%;
+  width: 40%;
+  padding: 3% 5%;
   margin: auto;
-}
-
-h2.formTitle {
-  font-size: 35px;
-  font-family: "Poppins";
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 15px;
+  box-shadow: 0 0 6px rgb(0 0 0 / 10%);
 }
 
 input#loginFormfiled {
-  padding: 10px 5px;
-  font-size: 17px;
-  margin: 8px 0px;
-  border: 0px;
-  font-family: "Poppins";
-  font-weight: 300;
+  background-color: transparent;
+  border: 1px solid #ebebeb;
+  color: #333;
+  font-size: 14px;
+  width: 100%;
+  font-family: 'Poppins';
   outline: none;
+  height: 45px;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+  padding: 0 15px;
+  width: 94%;
 }
 
 button.loginBtn {
-  background: transparent;
+  background: var(--btn-bg);
+  color: var(--white-color);
   border: none;
   font-family: "Poppins";
   font-size: 18px;
   font-weight: 300;
   letter-spacing: 1px;
   color: #000;
+  width: 100%;
   cursor: pointer;
   padding: 8px 25px;
-  margin-top: 10px;
-  transition: 0.3s;
+  margin-top: 0px;
+  color: #fff;
+  transition: .3s;
+}
+
+.googleLoginDiv {
+  width: 100%;
+  background: var(--btn-bg);
+  height: 43px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0px;
+  transition: .3s;
+  cursor: pointer;
+
+}
+.googleLoginDiv:hover {
+  background-color: var(--black-color);
 }
 
 button.loginBtn:hover {
-  background: var(--btn-bg);
-  color: var(--white-color);
+  background-color: var(--black-color);
+}
+
+
+.loginRegisterToggleBtn {
+  text-align: center;
+  width: 240px;
+  display: flex;
+  justify-content: space-between;
+  margin: 60px auto 0px auto;
+}
+
+button.loginTogglerBtn {
+  background: transparent;
+  border: none;
+  font-size: 30px;
+  font-weight: 700;
+  padding-right: 10px;
+  font-family: 'Poppins';
+  cursor: pointer;
+  letter-spacing: 2px;
+  border-right: 1px solid #ccc;
+}
+
+button.registerTogglerBtn {
+  border: none;
+  background: transparent;
+  font-size: 30px;
+  font-family: 'Poppins';
+  cursor: pointer;
+  font-weight: 700;
+  border-left: 1px solid #ccc;
+  padding-left: 10px;
+}
+
+#activeArea{
+  color: var(--btn-bg);
+}
+
+#deactiveArea{
+  color: #ccc;
+}
+
+.pofileArea {
+  margin: 100px 0px;
+}
+
+.userIntro {
+  text-align: center;
+}
+
+.profileHolderImage {
+  width: 15%;
+  border-radius: 100px;
+  margin: 10px auto;
+  text-align: center;
+}
+
+.profileHolderImage img {
+  text-align: center;
+  width: 100%;
+  border-radius: 100px;
+}
+
+h2.userName {
+  font-size: 20px;
+  font-family: 'Poppins';
+  font-weight: 700;
+}
+
+span.orderStatus {
+  background: #edc609;
+  color: #060606;
+  padding: 5px 30px;
+  border-radius: 30px;
+}
+
+button.orderActions {
+  padding: 3px 15px;
+  border: none;
+  color: #000;
+  display: flex;
+  font-size: 15px;
+  font-family: 'Poppins';
+  background: #14eb56;
+  margin: -4px auto;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+button.logoutBtn {
+  padding: 5px 20px;
+  margin: 10px 0px;
+  border-radius: 30px;
+  border: none;
+  font-size: 17px;
+  font-family: 'Poppins';
+  cursor: pointer;
+  background: #9c27b0;
+  color: #fff;
 }
 
 /* Respomsive css here */
-
 @media only screen and (max-width: 992px) {
   .gifLoader3 {
     position: fixed;
