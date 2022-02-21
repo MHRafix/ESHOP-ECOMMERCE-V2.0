@@ -3,19 +3,21 @@ import { Alert, Grid, Snackbar, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import usePost from '../../../CustomHooks/usePost';
 import GifLoader from '../../../Images/ICONS/loadingGif.gif';
+import useAuth from '../../../CustomHooks/useAuth';
 
 const WishListTable = ({data}) => {
     const presentPath = window.location.pathname;
     const {thumbnail, productTitle, salePrice, regularPrice} = data.cartedProduct;
     let productQuantity = data.quantity;
     const [quantity, setQuantity] = useState(Number(productQuantity));
-
+    const {user} = useAuth();
     // Move wishList product to cart list
     const { posting, handlePost, success, setSuccess, alertText } = usePost();
     const cartedProductData = {
         cartedProduct: data.cartedProduct,
         size: 'M',
-        quantity: 1
+        quantity: 1,
+        userEmail: user?.email
     };
     
     // Hide alert here

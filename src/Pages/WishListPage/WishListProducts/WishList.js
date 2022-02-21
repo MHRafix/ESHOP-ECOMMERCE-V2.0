@@ -8,7 +8,8 @@ import ErrImage from '../../../Images/ICONS/wishlistIcon.png';
 import CartTotalCard from '../../CartListPage/CartTotalCard';
 import WishListTable from './WishListTable';
 import useAuth from '../../../CustomHooks/useAuth';
-const WishList = () => {
+
+const WishList = ({gotData}) => {
     const {user} = useAuth();
     const presentPath = window.location.pathname;
     let getUrl;
@@ -17,9 +18,8 @@ const WishList = () => {
     }else{
         getUrl = `getFromCartList/${user.email}`;
     };
-    
+
     // Import product data from redux using custom hooks
-    const gotData = useSelector((state) => state.wishlistAllProducts.wishlistProducts);
     const { loading } = useGet(getUrl);
     // Total price count here
     let totalPrice = 0;

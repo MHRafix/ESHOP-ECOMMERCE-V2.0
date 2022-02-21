@@ -1,27 +1,21 @@
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { Badge } from '@mui/material';
 import React from 'react';
+import {useSelector} from 'react-redux';
+import useGet from '../../../CustomHooks/useGet';
+import useAuth from '../../../CustomHooks/useAuth';
 
 const WishListBtn = () => {
+    // Import current user data from context api
+    const {user} = useAuth();
+
     // Import data from custom hooks
-    // const {gotData} = useGet('getFromWishList');
-    // const gotData = useSelector((state) => state.wishlistAllProducts.wishlistProducts);
-    // const dispatch = useDispatch();
-    // const getProducts = async () => {
-    //     const res = await axios.get('https://rocky-bastion-69611.herokuapp.com/getFromWishList').catch((err) => {
-    //         console.log("Error", err);
-    //     });
-
-    //     dispatch(setWishListProducts(res.data));
-        
-    // }
-
-    // useEffect(() => {
-    //     getProducts();
-    // }, []);
+    const gotData = useSelector((state) => state.wishlistAllProducts.wishlistProducts);
+    const {loading} = useGet(`getFromWishList/${user?.email}`);
+    console.log(gotData);
 
     return (
-        <Badge badgeContent={12} color="secondary">
+        <Badge badgeContent={gotData?.length ? gotData?.length : '0'} color="secondary">
             <FavoriteBorderOutlinedIcon />
         </Badge>
     );

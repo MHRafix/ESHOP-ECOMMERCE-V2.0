@@ -19,11 +19,11 @@ import { Link } from 'react-router-dom';
 import useGet from '../../../CustomHooks/useGet';
 import ScrollingCartList from './ScrollingCartList';
 import WishListBtn from './WishListBtn';
+import useAuth from '../../../CustomHooks/useAuth';
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-  const productsData = useSelector((state) => state.allProducts.products);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -134,9 +134,10 @@ const Header = () => {
   });
 
   // Import product data from redux using custom hooks
-  const gotData = useSelector((state) => state.wishlistAllProducts.wishlistProducts);
-  const { loading } = useGet('getFromCartList');
-    
+  const {user} = useAuth();
+  const gotData = useSelector((state) => state.cartlistAllProducts.cartlistProducts);
+  const {loading} = useGet(`getFromCartList/${user?.email}`);
+
   const [ scrollingCartList, setScrollingCartList ] = useState(false);
   return (
     <Box >
@@ -193,7 +194,7 @@ const Header = () => {
                       }
                       }}
                     >
-                    <Badge badgeContent={productsData.length} color="secondary">
+                    <Badge badgeContent={gotData?.length ? gotData.length : '0'} color="secondary">
                         <ShoppingBagOutlinedIcon />
                     </Badge>
                     </IconButton>

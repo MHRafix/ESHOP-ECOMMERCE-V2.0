@@ -3,6 +3,7 @@ import { ActionTypes } from '../contants/action-types';
 const initialState = {
     products: [],
     wishlistProducts: [],
+    cartlistProducts: [],
     allCategoriesAndSizesProducts: [],
 }; 
 
@@ -33,6 +34,17 @@ export const wishlistProductReudcer = (state = initialState, {type, payload}) =>
     switch (type) {
         case ActionTypes.SET_WISHLIST_PRODUCTS:
             return {...state, wishlistProducts: payload};
+    
+        default:
+            return state;
+    }
+}
+
+// Cartlist all products reducer here
+export const cartlistProductReudcer = (state = initialState, {type, payload}) => {
+    switch (type) {
+        case ActionTypes.SET_CARTLIST_PRODUCTS:
+            return {...state, cartlistProducts: payload};
     
         default:
             return state;
