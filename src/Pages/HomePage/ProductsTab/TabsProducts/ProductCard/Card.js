@@ -7,17 +7,16 @@ import { Grid, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import Rating from 'react-rating';
 import { Link } from 'react-router-dom';
-import useAnimation from '../../../../../CustomHooks/useAnimation';
+// import useAnimation from '../../../../../CustomHooks/useAnimation';
 import ProductQuickView from '../../../../SharedComponents/Modals/ProductQuickView';
+import useAuth from '../../../../../CustomHooks/useAuth';
 
 const Card = ({ data, col, handlePost }) => {
   const [ quickView, setQuickView ] = useState(false);
-
-  // Import animation here
-  useAnimation();
-
+  // Import useAuth from context api
+  const {user} = useAuth();
   // Let's destucturing the product data from the data object
-  const { _id, productTitle, thumbnail, thumbnails, regularPrice, salePrice, ratingsandreviews
+  const { _id, productTitle, thumbnail, regularPrice, salePrice, ratingsandreviews
   } = data;
   
   // Let's calculate the average rating and reviews here
@@ -33,7 +32,8 @@ const Card = ({ data, col, handlePost }) => {
   const cartedProductData = {
     cartedProduct: data,
     size: 'M',
-    quantity: 1
+    quantity: 1,
+    userEmail: user?.email
   };
 
     return (
@@ -66,7 +66,7 @@ const Card = ({ data, col, handlePost }) => {
               </Typography></Link>
               <span className="rattis" style={{ color: '#ffa900', textAlign: 'center'}}>
               <Rating
-                initialRating={averageRating / ratingsandreviews.length}
+                initialRating={averageRating / ratingsandreviews?.length}
                 emptySymbol={<StarBorderOutlinedIcon />}
                 fullSymbol={<StarIcon />}
                 readonly

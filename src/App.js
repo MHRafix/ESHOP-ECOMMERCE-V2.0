@@ -10,6 +10,7 @@ import SingleProductMain from './Pages/SingleProductPage/SingleProductMain';
 import WishListMain from './Pages/WishListPage/WishListMain';
 import AuthProvider from './Context/AuthProvider';
 import ProfileMain from './Pages/UserProfile/ProfileMain';
+import PrivateRoute from './Pages/PrivateRoutes/PrivateRoute';
 
 function App() {
   return (
@@ -43,9 +44,9 @@ function App() {
             <Route exact path="/shop/products/singleProducts/:productId">
                <SingleProductMain />
             </Route>
-            <Route exact path="/userAccount/user/myProfile">
+            <PrivateRoute exact path="/userAccount/user/myProfile">
                <ProfileMain />
-            </Route>
+            </PrivateRoute>
          </Switch>
          </BrowserRouter>
       </AuthProvider>

@@ -8,13 +8,13 @@ const useGet = (url) => {
     const dispatch = useDispatch();
     const getProducts = async () => {
         setLoading(true);
-        const res = await axios.get(`https://rocky-bastion-69611.herokuapp.com/${url}`).catch((err) => {
+        const res = await axios.get(`https://immense-atoll-76611.herokuapp.com/${url}`).catch((err) => {
             console.log("Error", err);
         });
         
-        if(url === "getFromCartList"){
+        if(url.slice(0, 15) === "getFromCartList"){
             dispatch(setWishListProducts(res.data));
-        }else if(url === "getFromWishList"){
+        }else if(url.slice(0, 15) === "getFromWishList"){
             dispatch(setWishListProducts(res.data));
         }else if(url === "allProductsForCatAndSizes"){}else{
             dispatch(setProducts(res.data));

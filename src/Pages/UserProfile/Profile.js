@@ -25,6 +25,7 @@ export default function Profile() {
         setValue(newValue);
     };
 
+    console.log(user.displayName);
 
   return (
     <section>
@@ -32,10 +33,10 @@ export default function Profile() {
             <div className="pofileArea">
                 <div className='userIntro'>
                     <div className="profileHolderImage">
-                        <img src={user?.photoURL} alt="profilePicture" />
+                        <img src={user?.photoURL ? user?.photoURL : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx9tjaExsY-srL4VsHNE_OKGVCJ-eIFNBktw&usqp=CAU'} alt="profilePicture" />
                     </div>
                     <div className="nameOfUser">
-                        <h2 className="userName">{user?.displayName?.toUpperCase()}</h2>
+                         <h2 className="userName">{user?.displayName ? user?.displayName?.toUpperCase() : "Hablu Custommer"}</h2>
                         <button className="logoutBtn" onClick={handleSignOut}>Signout</button>
                     </div>
                 </div>

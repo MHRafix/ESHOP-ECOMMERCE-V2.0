@@ -628,6 +628,13 @@ span.orderStatus {
   border-radius: 30px;
 }
 
+button.orderActions:hover,
+button.logoutBtn:hover{
+  color: #fff!important;
+  background-color: #000!important;
+  transition: .3s;
+}
+
 button.orderActions {
   padding: 3px 15px;
   border: none;
