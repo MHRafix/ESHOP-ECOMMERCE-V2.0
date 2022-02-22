@@ -8,13 +8,14 @@ const usePost = () => {
 
     const handlePost = (data, url) => {
         setPosting(true);
-        const postUrl = `https://rocky-bastion-69611.herokuapp.com/${url}`;
-        // const postUrl = `http://localhost:5000/${url}`;
+        const postUrl = `https://immense-atoll-76611.herokuapp.com/${url}`;
         axios.post(postUrl, data)
         .then(res => {
           if(res.data.insertedId){
             if(url === "addToCartList"){
               setAlertText('Product successfully added to cart!');
+            }else if(url === "allCustomersOrders"){
+              setAlertText('Thank you for your order!')
             }else{
               setAlertText('Product successfully added to wish list!');
             }

@@ -1,6 +1,5 @@
 import { CircularProgress, Container, Grid, Typography } from '@mui/material';
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import useGet from '../../../CustomHooks/useGet';
 import CartIcon from '../../../Images/ICONS/cartIcon.png';
@@ -21,12 +20,14 @@ const WishList = ({gotData}) => {
 
     // Import product data from redux using custom hooks
     const { loading } = useGet(getUrl);
+    
     // Total price count here
     let totalPrice = 0;
     for(const data of gotData){
-        const price = Number(data?.cartedProduct?.salePrice);
+        const price = Number(data?.cartedProduct?.salePrice * data?.quantity);
         totalPrice = totalPrice + price;
     }
+
     return (
         <section>
             <div className="wishListWrapper">

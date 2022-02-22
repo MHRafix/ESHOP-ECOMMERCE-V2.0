@@ -2,21 +2,64 @@ import { Grid } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import Table from '../CheckoutTable/Table';
+import {useSelector} from 'react-redux';
+import usePost from '../../../../CustomHooks/usePost';
+import useAuth from '../../../../CustomHooks/useAuth';
+import { Alert, Snackbar } from '@mui/material';
+import GifLoader from '../../../../Images/ICONS/loadingGif.gif';
 
 const Form = () => {
     // Import react hook form functionality here
     const { register, handleSubmit } = useForm();
-    const onSubmit = data => console.log(data); 
-    
     const [districts, setDistricts] = useState([]);
+    const {user} = useAuth();
+    // Get all cartlist data from redux
+    const gotData = useSelector((state) => state.cartlistAllProducts.cartlistProducts);
+    
+    // Total price count here
+    let totalPrice = 0;
+    for(const data of gotData){
+        const price = Number(data?.cartedProduct?.salePrice * data?.quantity);
+        totalPrice = totalPrice + price;
+    }
+
+    // Import usePost from custom hooks
+    const { handlePost, posting, success, setSuccess, alertText } = usePost();
+
+    // Handle customer address form here
+    const onSubmit = data => {
+        const orderedData = {
+            orderedProducts: gotData,
+            customerInfo: data,
+            userEmail: user?.email,
+            grandTotalPrice: totalPrice
+        };
+
+        handlePost(orderedData, "allCustomersOrders");
+    } 
+    
     useEffect(() => {
         fetch("http://bdapis.herokuapp.com/api/v1.1/districts")
         .then(res => res.json())
         .then(data => setDistricts(data.data));
     }, []);
 
+    // Hide alert here
+    function hideAlert(){
+        setSuccess(false);
+    }
+
+    if(success){
+        setTimeout(hideAlert, 5000);
+    }
+    
     return (
         <div className="userInformationForm">
+                <Snackbar open={success} autoHideDuration={6000}>
+                    <Alert severity="success" sx={{ width: '100%', background: 'rgb(46 125 50)', color: 'white', fontFamily: 'Poppins', fontWeight: 400, fontSize: {xs: '13px', md: '18px'}}}>
+                        {alertText}
+                    </Alert>
+                </Snackbar>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <h2>Billing Details</h2> <br />
                 <Grid container sx={{display: 'flex', justifyContent: 'space-between'}}>
@@ -37,12 +80,12 @@ const Form = () => {
                 <input 
                 id="inputFiled" 
                 type="email" 
-                {...register("email", {required: true })} required/><br />
+                {...register("customerValidEmail", {required: true })} required/><br />
 
                 <label>Phone*</label><br />
                 <input 
                 id="inputFiled" 
-                type="number" 
+                type="tel"
                 {...register("phoneNumber", {required: true})} required/> <br />
                 
                 <label>District*</label><br />
@@ -69,11 +112,15 @@ const Form = () => {
                 </textarea><br />
                 </Grid>
                 <Grid xs={12} md={5}sx={{width: '38%'}}>
-                    <Table />
+                    <Table totalPrice={totalPrice}/>
                     <button className="btnButton" type="submit">Place Order</button>
                 </Grid>
                 </Grid>
             </form>
+            {posting && <div className="gifLoader">
+                 <img className="gif" src={GifLoader} alt="loader" />
+                </div>
+            }
         </div>
     );
 };
