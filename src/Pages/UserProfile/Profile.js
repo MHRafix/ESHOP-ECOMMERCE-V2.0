@@ -25,8 +25,6 @@ export default function Profile() {
         setValue(newValue);
     };
 
-    console.log(user.displayName);
-
   return (
     <section>
         <Container>

@@ -15,7 +15,6 @@ const SingleProductMain = () => {
     
     const gotData = useSelector((state) => state.singleProduct);
     const dispatch = useDispatch();
-    console.log(gotData);
     
     const getSingleProduct = async () => {
         setLoading(true);

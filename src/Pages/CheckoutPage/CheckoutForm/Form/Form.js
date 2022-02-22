@@ -38,10 +38,13 @@ const Form = () => {
         handlePost(orderedData, "allCustomersOrders");
     } 
     
+    // Handle districts api of Bangladesh
     useEffect(() => {
-        fetch("http://bdapis.herokuapp.com/api/v1.1/districts")
+        fetch("../districts.json")
         .then(res => res.json())
-        .then(data => setDistricts(data.data));
+        .then(data => {
+            setDistricts(data);
+        });
     }, []);
 
     // Hide alert here
@@ -95,7 +98,7 @@ const Form = () => {
                 {...register("district", {required: true })}
                 >
                 <option selected>Select your district</option>
-                {districts.map(district => <option value={district.district}>{district.district}</option>)}
+                {districts?.map(district => <option value={district.name}>{district.name}</option>)}
                 </select><br />
                 
                 <label>Street/Village*</label><br />

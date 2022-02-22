@@ -12,7 +12,6 @@ const WishListBtn = () => {
     // Import data from custom hooks
     const gotData = useSelector((state) => state.wishlistAllProducts.wishlistProducts);
     const {loading} = useGet(`getFromWishList/${user?.email}`);
-    console.log(gotData);
 
     return (
         <Badge badgeContent={gotData?.length ? gotData?.length : '0'} color="secondary">
