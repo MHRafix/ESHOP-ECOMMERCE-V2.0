@@ -5,6 +5,7 @@ const initialState = {
     wishlistProducts: [],
     cartlistProducts: [],
     allCategoriesAndSizesProducts: [],
+    orders: [],
 }; 
 
 // All products reducer here
@@ -45,6 +46,17 @@ export const cartlistProductReudcer = (state = initialState, {type, payload}) =>
     switch (type) {
         case ActionTypes.SET_CARTLIST_PRODUCTS:
             return {...state, cartlistProducts: payload};
+    
+        default:
+            return state;
+    }
+}
+
+// Myorders data reducer here
+export const myOrdersReudcer = (state = initialState, {type, payload}) => {
+    switch (type) {
+        case ActionTypes.SET_MYORDERS:
+            return {...state, orders: payload};
     
         default:
             return state;

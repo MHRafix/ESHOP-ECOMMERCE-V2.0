@@ -24,6 +24,14 @@ export const setCartListProducts = (products) => {
     }
 }
 
+//Myorders products action here
+export const setMyOrders = (products) => {
+    return{
+        type: ActionTypes.SET_MYORDERS,
+        payload: products
+    }
+}
+
 // Action for products categories and sizes
 export const setProductsForCategoriesAndSizes = (products) => {
     return{

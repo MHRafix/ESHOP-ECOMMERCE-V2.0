@@ -32,7 +32,8 @@ const Form = () => {
             orderedProducts: gotData,
             customerInfo: data,
             userEmail: user?.email,
-            grandTotalPrice: totalPrice
+            grandTotalPrice: totalPrice,
+            status: 'Pendding'
         };
 
         handlePost(orderedData, "allCustomersOrders");

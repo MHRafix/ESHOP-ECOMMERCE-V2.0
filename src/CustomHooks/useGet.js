@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
-import { setProducts, setWishListProducts, setCartListProducts } from "../redux/actions/productActions";
+import { setProducts, setWishListProducts, setCartListProducts, setMyOrders } from "../redux/actions/productActions";
 
 const useGet = (url) => {
     const [ loading, setLoading ] = useState(false);
@@ -17,7 +17,9 @@ const useGet = (url) => {
             dispatch(setCartListProducts(res.data));
         }else if(url.slice(0, 15) === "getFromWishList"){
             dispatch(setWishListProducts(res.data));
-        }else if(url === "allProductsForCatAndSizes"){}else{
+        }else if(url.slice(0, 9) === 'allOrders'){
+            dispatch(setMyOrders(res.data));
+        }else{
             dispatch(setProducts(res.data));
         }
         setLoading(false);

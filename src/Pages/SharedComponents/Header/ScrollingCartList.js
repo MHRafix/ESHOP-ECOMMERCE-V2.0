@@ -15,7 +15,7 @@ const ScrollingCartList = ({cartProductsList}) => {
                 {cartProductsList.length ? <Grid item md={12} xs={12}>
                     {cartProductsList.map(cartProduct => <Grid container xs={12} md={12}>
                         <Grid item md={3} xs={3}>
-                            <img width="70" height="100" src={cartProduct?.cartedProduct?.thumbnail} alt="Image" />
+                            <img width="70" height="100" src={cartProduct?.cartedProduct?.thumbnail} alt="Imagecart" />
                         </Grid>
                         <Grid item md={8} xs={8}>
                             <Typography sx={{ fontSize: '15px', fontFamily: 'Poppins', fontWeight: 400, lineHeight: '25px'}}>

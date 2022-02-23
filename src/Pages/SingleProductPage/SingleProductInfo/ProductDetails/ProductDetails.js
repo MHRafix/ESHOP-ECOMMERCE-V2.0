@@ -5,13 +5,11 @@ import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import { Grid, Radio, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import Rating from 'react-rating';
-import { useDispatch } from 'react-redux';
 import useAuth from '../../../../CustomHooks/useAuth';
 
 const ProductDetails = ({productDetails, handlePost}) => {
     const {user} = useAuth();
     const [ quantity, setQuantity ] = useState(1);
-    const disPatch = useDispatch();
     // Let's destructuring the data from the productDetails object
     const { productTitle, regularPrice, salePrice, ratingsandreviews, sizes, category } = productDetails;
 

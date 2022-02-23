@@ -3,7 +3,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import Login from './Login';
 import Register from './Register';
 import useAuth from '../../CustomHooks/useAuth';
-import { Alert, Snackbar } from '@mui/material';
+import { Alert } from '@mui/material';
 
 export default function LoginRegisterMain() {
     // Take some state for controlling login area and register area

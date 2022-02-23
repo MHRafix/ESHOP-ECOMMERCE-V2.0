@@ -524,7 +524,7 @@ button.loginBtn {
   font-weight: 300;
   letter-spacing: 1px;
   color: #000;
-  width: 100%;
+  width: 99%;
   cursor: pointer;
   padding: 8px 25px;
   margin-top: 0px;
@@ -533,7 +533,7 @@ button.loginBtn {
 }
 
 .googleLoginDiv {
-  width: 100%;
+  width: 99%;
   background: var(--btn-bg);
   height: 43px;
   color: #fff;
@@ -545,8 +545,8 @@ button.loginBtn {
   margin: 20px 0px;
   transition: .3s;
   cursor: pointer;
-
 }
+
 .googleLoginDiv:hover {
   background-color: var(--black-color);
 }
@@ -662,7 +662,45 @@ button.logoutBtn {
   color: #fff;
 }
 
+.singleOrderedProduct {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0px;
+}
+
+.orderedProductsImageArea img.orderedProductImage {
+  width: 120px;
+  height: 120px;
+  border-radius: 15px;
+}
+
+span.columnData {
+  font-size: 20px;
+  font-weight: 500;
+  color: #000;
+  display: block;
+}
+
+.emptyMessage {
+  padding: 0px 0px;
+  text-align: center;
+}
+
 /* Respomsive css here */
+@media only screen and (max-width: 1199px) {
+  .formArea {
+    box-shadow: 0 0 6px rgba(0,0,0,.1);
+    margin: auto;
+    padding: 3% 5%;
+    width: 70%;
+}
+
+input#loginFormfiled {
+  width: 94.3%;
+}
+}
+
 @media only screen and (max-width: 992px) {
   .gifLoader3 {
     position: fixed;
@@ -671,9 +709,23 @@ button.logoutBtn {
     margin: auto;
     width: 98% !important;
   }
+
+  .formArea {
+    box-shadow: 0 0 6px rgba(0,0,0,.1);
+    margin: auto;
+    padding: 3% 5%;
+    width: 60%;
+}
 }
 
 @media only screen and (max-width: 768px) {
+  .formArea {
+    box-shadow: 0 0 6px rgba(0,0,0,.1);
+    margin: auto;
+    padding: 3% 5%;
+    width: 80%;
+}
+
   .scrollingITems {
     position: fixed;
     background: white;
@@ -707,20 +759,27 @@ button.logoutBtn {
     font-weight: 500;
     margin-bottom: 25px;
   }
+
+  .formArea {
+    box-shadow: 0 0 6px rgba(0,0,0,.1);
+    margin: auto;
+    padding: 3% 3%;
+    width: 90%;
+}
 }
 
-@media only screen and (max-width: 600px) {
-  .sliderArticle h1.Headline {
-    font-size: 50px;
-    font-weight: 500;
-    margin-bottom: 25px;
-  }
-}
 
 @media only screen and (max-width: 425px) {
   .sliderArticle span.tagline {
     font-size: 20px;
   }
+
+  .formArea {
+    box-shadow: 0 0 6px rgba(0,0,0,.1);
+    margin: auto;
+    padding: 3% 2%;
+    width: 95%;
+}
 
   .sliderArticle h1.Headline {
     font-size: 38px;
@@ -735,12 +794,32 @@ button.logoutBtn {
     width: 115px;
     font-size: 15px;
   }
+
+  input#loginFormfiled {
+    width: 92%;
+}
+
+button.loginBtn {
+  width: 99%;
+}
+
+.googleLoginDiv {
+  width: 99%;
+}
+
 }
 
 @media only screen and (max-width: 375px) {
   .sliderArticle span.tagline {
     font-size: 15px;
   }
+
+  .formArea {
+    box-shadow: 0 0 6px rgba(0,0,0,.1);
+    margin: auto;
+    padding: 3% 2%;
+    width: 95%;
+}
 
   .sliderArticle h1.Headline {
     font-size: 30px;

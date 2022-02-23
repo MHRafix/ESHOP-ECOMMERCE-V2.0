@@ -4,28 +4,6 @@ import Slider from 'react-slick';
 
 const ProductSlider = ({slidersThumbnails}) => {
 
-    function SampleNextArrow(props) {
-        const { className, style, onClick } = props;
-        return (
-          <div
-            className={className}
-            style={{ ...style, display: "block", background: "var(--btn-bg)", padding: "10px 15px", color: "var(--white-color)", zIndex: '222' }}
-            onClick={onClick}
-          />
-        );
-      }
-      
-    function SamplePrevArrow(props) {
-        const { className, style, onClick } = props;
-        return (
-          <div
-            className={className}
-            style={{ ...style, display: "block", background: "var(--btn-bg)", padding: "10px 15px", color: "var(--white-color)", zIndex: '222' }}
-            onClick={onClick}
-          />
-        );
-      }
-      
     const settings = {
         infinite: true,
         autoplay: true,
