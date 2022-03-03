@@ -18,7 +18,7 @@ const SingleProductMain = () => {
     
     const getSingleProduct = async () => {
         setLoading(true);
-        const res =  await axios.get(`https://rocky-bastion-69611.herokuapp.com/${dependency}`).catch((err) => {
+        const res =  await axios.get(`https://eshopy-server.herokuapp.com/${dependency}`).catch((err) => {
             console.log("Error", err);
         })
         dispatch(selectedProducts(res.data));

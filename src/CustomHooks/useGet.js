@@ -8,7 +8,7 @@ const useGet = (url) => {
     const dispatch = useDispatch();
     const getProducts = async () => {
         setLoading(true);
-        const res = await axios.get(`https://immense-atoll-76611.herokuapp.com/${url}`).catch((err) => {
+        const res = await axios.get(`https://eshopy-server.herokuapp.com/${url}`).catch((err) => {
             console.log("Error", err);
         });
 

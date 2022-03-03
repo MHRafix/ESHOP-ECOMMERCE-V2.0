@@ -18,7 +18,7 @@ const Sidebar = ({dpend}) => {
     const dispatch = useDispatch();
     const getProducts = async () => {
         setLoading(true);
-        const res = await axios.get("https://rocky-bastion-69611.herokuapp.com/products").catch((err) => {
+        const res = await axios.get("https://eshopy-server.herokuapp.com/products").catch((err) => {
             console.log("Error", err);
         });
         

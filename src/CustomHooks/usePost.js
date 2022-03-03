@@ -8,7 +8,7 @@ const usePost = () => {
 
     const handlePost = (data, url) => {
         setPosting(true);
-        const postUrl = `https://immense-atoll-76611.herokuapp.com/${url}`;
+        const postUrl = `https://eshopy-server.herokuapp.com/${url}`;
         axios.post(postUrl, data)
         .then(res => {
           if(res.data.insertedId){
