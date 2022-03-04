@@ -22,6 +22,7 @@ const WishListTable = ({ data }) => {
     userEmail: user?.email,
   };
 
+  // handle delete wishlist products here
   const {
     deleting,
     handleDelete,
@@ -219,9 +220,9 @@ const WishListTable = ({ data }) => {
         <button
           className="crossBtn"
           onClick={() => {
-            if (presentPath === "cartlist") {
+            if (presentPath === "/cartlist") {
               handleDelete(`deleteCartlistProducts/${data._id}`);
-            } else if (presentPath === "wishlist") {
+            } else if (presentPath === "/wishlist") {
               handleDelete(`deleteWishlistProducts/${data._id}`);
             }
           }}
