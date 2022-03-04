@@ -34,6 +34,7 @@ body {
   width: 100%;
   display: block;
   overflow: hidden;
+  margin-top: 60px;
 }
 
 .sliderDetails {
@@ -54,6 +55,10 @@ body {
 .sliderArticle span.tagline {
   font-size: 25px;
   font-weight: 500;
+}
+
+.breadCrumbContainer {
+  margin-top: 65px;
 }
 
 .sliderArticle h1.Headline {
@@ -85,6 +90,13 @@ body {
 
 .controller span:hover {
   color: #9c27b0;
+}
+
+.breadCrumbLink {
+  color: #686060;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 /* Facilities section css here */
@@ -696,18 +708,30 @@ span.columnData {
     width: 70%;
   }
 
+  .breadCrumbLink {
+    font-size: 14px;
+  }
+
   input#loginFormfiled {
     width: 94.3%;
   }
 }
 
 @media only screen and (max-width: 992px) {
+  .breadCrumbContainer {
+    margin-top: 50px;
+  }
+
   .gifLoader3 {
     position: fixed;
     top: 40%;
     text-align: center;
     margin: auto;
     width: 98% !important;
+  }
+
+  .breadCrumbLink {
+    font-size: 14px;
   }
 
   .formArea {
@@ -724,6 +748,10 @@ span.columnData {
     margin: auto;
     padding: 3% 5%;
     width: 80%;
+  }
+
+  .breadCrumbLink {
+    font-size: 13px;
   }
 
   .scrollingITems {
@@ -754,6 +782,14 @@ span.columnData {
 }
 
 @media only screen and (max-width: 600px) {
+  .sliderWrapper {
+    margin-top: 50px;
+  }
+
+  .breadCrumbLink {
+    font-size: 12px;
+  }
+
   .sliderArticle h1.Headline {
     font-size: 50px;
     font-weight: 500;
@@ -771,6 +807,14 @@ span.columnData {
 @media only screen and (max-width: 425px) {
   .sliderArticle span.tagline {
     font-size: 20px;
+  }
+
+  .breadCrumbLink {
+    font-size: 10px;
+  }
+
+  .sliderWrapper {
+    margin-top: 45px;
   }
 
   .formArea {
@@ -808,6 +852,10 @@ span.columnData {
 }
 
 @media only screen and (max-width: 375px) {
+  .sliderWrapper {
+    margin-top: 50px;
+  }
+
   .sliderArticle span.tagline {
     font-size: 15px;
   }
