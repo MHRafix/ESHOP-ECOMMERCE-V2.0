@@ -2,6 +2,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Alert, Grid, Snackbar, Typography } from "@mui/material";
 import React, { useState } from "react";
 import useAuth from "../../../CustomHooks/useAuth";
+import useDelete from "../../../CustomHooks/useDelete";
 import usePost from "../../../CustomHooks/usePost";
 import GifLoader from "../../../Images/ICONS/loadingGif.gif";
 
@@ -21,12 +22,26 @@ const WishListTable = ({ data }) => {
     userEmail: user?.email,
   };
 
+  const {
+    deleting,
+    handleDelete,
+    deleteSuccess,
+    setDeleteSuccess,
+    deleteAlertText,
+  } = useDelete();
+
   // Hide alert here
   function hideAlert() {
-    setSuccess(false);
+    if (success) {
+      setSuccess(false);
+    } else if (deleteSuccess) {
+      setDeleteSuccess(false);
+    }
   }
 
   if (success) {
+    setTimeout(hideAlert, 5000);
+  } else if (deleteSuccess) {
     setTimeout(hideAlert, 5000);
   }
 
@@ -45,6 +60,21 @@ const WishListTable = ({ data }) => {
           }}
         >
           {alertText}
+        </Alert>
+      </Snackbar>
+      <Snackbar open={deleteSuccess} autoHideDuration={6000}>
+        <Alert
+          severity="success"
+          sx={{
+            width: "100%",
+            background: "rgb(46 125 50)",
+            color: "white",
+            fontFamily: "Poppins",
+            fontWeight: 400,
+            fontSize: { xs: "13px", md: "18px" },
+          }}
+        >
+          {deleteAlertText}
         </Alert>
       </Snackbar>
       <Grid
@@ -186,9 +216,26 @@ const WishListTable = ({ data }) => {
         md={presentPath === "/wishlist" ? 2.4 : 2}
         sx={{ textAlign: "center" }}
       >
-        <button className="crossBtn">&times;</button>
+        <button
+          className="crossBtn"
+          onClick={() => {
+            if (presentPath === "cartlist") {
+              handleDelete(`deleteCartlistProducts/${data._id}`);
+            } else if (presentPath === "wishlist") {
+              handleDelete(`deleteWishlistProducts/${data._id}`);
+            }
+          }}
+        >
+          &times;
+        </button>
       </Grid>
       {posting && (
+        <div className="gifLoader">
+          <img className="gif" src={GifLoader} alt="loader" />
+        </div>
+      )}
+
+      {deleting && (
         <div className="gifLoader">
           <img className="gif" src={GifLoader} alt="loader" />
         </div>
