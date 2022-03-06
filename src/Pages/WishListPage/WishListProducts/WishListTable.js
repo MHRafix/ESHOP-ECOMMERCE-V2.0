@@ -221,9 +221,11 @@ const WishListTable = ({ data }) => {
           className="crossBtn"
           onClick={() => {
             if (presentPath === "/cartlist") {
-              handleDelete(`deleteCartlistProducts/${data._id}`);
+              handleDelete(`deleteCartlistProducts/${data._id}`, data._id);
+              // handleDelete(`deleteCartlistProducts/${data._id}`);
             } else if (presentPath === "/wishlist") {
-              handleDelete(`deleteWishlistProducts/${data._id}`);
+              // handleDelete(`deleteWishlistProducts/${data._id}`);
+              handleDelete(`deleteCartlistProducts/${data._id}`, data._id);
             }
           }}
         >

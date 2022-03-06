@@ -17,6 +17,7 @@ import useGet from "../../../CustomHooks/useGet";
 import usePost from "../../../CustomHooks/usePost";
 import GifLoader from "../../../Images/ICONS/loadingGif.gif";
 import ErrImage from "../../../Images/ICONS/shopingError.jpg";
+// import { SET_QUANTITY } from "../../../redux/contants/action-types";
 import Card from "../../HomePage/ProductsTab/TabsProducts/ProductCard/Card";
 import MobileSidebar from "../Sidebar/MobileSidebar";
 import Sidebar from "../Sidebar/Sidebar";
@@ -255,3 +256,4 @@ const Shop = () => {
 };
 
 export default Shop;
+// export default Shop;

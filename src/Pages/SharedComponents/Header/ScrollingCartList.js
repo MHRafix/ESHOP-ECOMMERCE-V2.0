@@ -70,11 +70,12 @@ const ScrollingCartList = ({ cartProductsList }) => {
                   <Grid item md={1} xs={1}>
                     <button
                       className="scrollingItemCrossBtn"
-                      onClick={() =>
+                      onClick={() => {
                         handleDelete(
-                          `deleteCartlistProducts/${cartProduct._id}`
-                        )
-                      }
+                          `deleteCartlistProducts/${cartProduct?._id}`,
+                          cartProduct.cartedProduct._id
+                        );
+                      }}
                     >
                       &times;
                     </button>

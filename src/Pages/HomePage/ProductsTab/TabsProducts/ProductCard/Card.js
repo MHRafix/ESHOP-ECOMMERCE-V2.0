@@ -6,8 +6,10 @@ import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
 import Rating from "react-rating";
+import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import useAuth from "../../../../../CustomHooks/useAuth";
+import { addProductToCart } from "../../../../../redux/actions/productActions";
 // import useAnimation from '../../../../../CustomHooks/useAnimation';
 import ProductQuickView from "../../../../SharedComponents/Modals/ProductQuickView";
 
@@ -45,6 +47,8 @@ const Card = ({ data, col, handlePost }) => {
     userEmail: user?.email,
   };
 
+  const dispatch = useDispatch();
+
   return (
     <Grid item mb={4} xs={12} md={col} data-aos="fade-up">
       <div className="productCard">
@@ -78,6 +82,7 @@ const Card = ({ data, col, handlePost }) => {
               className="cartBtn"
               onClick={() => {
                 if (user?.email) {
+                  dispatch(addProductToCart(cartedProductData));
                   handlePost(cartedProductData, "addToCartList");
                 } else {
                   history.replace("/userAccount/user/login");

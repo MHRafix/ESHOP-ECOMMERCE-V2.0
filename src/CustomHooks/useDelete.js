@@ -1,24 +1,27 @@
 import axios from "axios";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { removeProduct } from "../redux/actions/productActions";
 
 const useDelete = () => {
   const [deleting, setDeleting] = useState(false);
   const [deleteSuccess, setDeleteSuccess] = useState(false);
   const [deleteAlertText, setDeleteAlertText] = useState("");
+  const dispatch = useDispatch();
 
   // Handle delete booked package with confirmation window alert
-  const handleDelete = (url) => {
+  const handleDelete = (url, id) => {
     const cnfDel = window.confirm("Are you sure ?");
     if (cnfDel) {
       setDeleting(true);
+      dispatch(removeProduct(id));
 
-      // const deleteUrl = `https://eshopy-server.herokuapp.com/${url}`;
-      const deleteUrl = `http://localhost:5000/${url}`;
-      console.log(deleteUrl);
+      const deleteUrl = `https://eshopy-server.herokuapp.com/${url}`;
       axios
         .delete(deleteUrl)
         .then((res) => {
           if (res?.data?.result?.n === 1) {
+            console.log("Deleted!");
             setDeleting(false);
             setDeleteAlertText("Product successfully deleted!");
             setDeleteSuccess(true);
