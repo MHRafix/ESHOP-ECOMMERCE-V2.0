@@ -5,11 +5,16 @@ import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 import { Grid, Radio, Typography } from "@mui/material";
 import React, { useState } from "react";
 import Rating from "react-rating";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import useAuth from "../../../../CustomHooks/useAuth";
+import { addProductToCart } from "../../../../redux/actions/productActions";
 
 const ProductDetails = ({ productDetails, handlePost }) => {
   const { user } = useAuth();
   const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   // Let's destructuring the data from the productDetails object
   const {
@@ -196,7 +201,14 @@ const ProductDetails = ({ productDetails, handlePost }) => {
 
           <button
             className="addToCartBtn"
-            onClick={() => handlePost(cartedProductData, "addToCartList")}
+            onClick={() => {
+              if (user?.email) {
+                dispatch(addProductToCart(cartedProductData));
+                handlePost(cartedProductData, "addToCartList");
+              } else {
+                history.replace("/userAccount/user/login");
+              }
+            }}
           >
             Add To Cart
           </button>

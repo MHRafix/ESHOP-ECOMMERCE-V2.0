@@ -1,17 +1,5 @@
 import { ActionTypes } from "../contants/action-types";
 
-export const addProductToCart = (qn) => {
-  return { type: ActionTypes.ADD_TO_CART, payload: qn };
-};
-
-// All products action here
-export const removeProduct = (id) => {
-  return {
-    type: ActionTypes.REMOVE_CART_PRODUCT,
-    payload: id,
-  };
-};
-
 // All products action here
 export const setProducts = (products) => {
   return {
@@ -67,10 +55,28 @@ export const removeSelectedProducts = (products) => {
   };
 };
 
-// increase quantity
-// export const setQuantity = () => {
-//   return {
-//     type: ActionTypes.SET_QUANTITY,
-//     payload: 1,
-//   };
-// };
+// Add product to cartlist
+export const addProductToCart = (product) => {
+  return { type: ActionTypes.ADD_TO_CART, payload: product };
+};
+
+// Add product to wishlist
+export const addProductToWish = (product) => {
+  return { type: ActionTypes.ADD_TO_WISH, payload: product };
+};
+
+// Remove product from cartlist
+export const removeProduct = (id) => {
+  return {
+    type: ActionTypes.REMOVE_CART_PRODUCT,
+    payload: id,
+  };
+};
+
+// Remove product from wishlist
+export const removeWishlistProduct = (id) => {
+  return {
+    type: ActionTypes.REMOVE_WISH_PRODUCT,
+    payload: id,
+  };
+};

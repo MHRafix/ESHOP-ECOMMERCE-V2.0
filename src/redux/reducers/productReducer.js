@@ -33,57 +33,6 @@ export const allProductsCategorisAndSizesReducer = (
   }
 };
 
-// Wishlist all products reducer here
-export const wishlistProductReudcer = (
-  state = initialState,
-  { type, payload }
-) => {
-  switch (type) {
-    case ActionTypes.SET_WISHLIST_PRODUCTS:
-      return { ...state, wishlistProducts: payload };
-
-    default:
-      return state;
-  }
-};
-
-// Cartlist all products reducer here
-export const cartlistProductReudcer = (
-  state = initialState,
-  { type, payload }
-) => {
-  switch (type) {
-    case ActionTypes.SET_CARTLIST_PRODUCTS:
-      return { ...state.cartlistProducts, cartlistProducts: payload };
-
-    case ActionTypes.ADD_TO_CART:
-      // const isExist = state?.cartlistProducts.find(
-      //   (product) => product.cartedProduct._id === payload.cartedProduct._id
-      // );
-      // if (isExist) {
-      //   // increase the product Quantity
-      //   return state?.cartlistProducts.map((product) =>
-      //     product.cartedProduct._id === payload._id
-      //       ? { ...product, quantity: product.quantity + 1 }
-      //       : product
-      //   );
-      // } else {
-      const product = payload;
-      const newCart = [...state.cartlistProducts, product];
-      return { ...state, cartlistProducts: newCart };
-    // }
-
-    case ActionTypes.REMOVE_CART_PRODUCT:
-      const restCart = state.cartlistProducts.filter(
-        (pd) => pd.cartedProduct._id !== payload
-      );
-
-      return { ...state, cartlistProducts: restCart };
-    default:
-      return state;
-  }
-};
-
 // Myorders data reducer here
 export const myOrdersReudcer = (state = initialState, { type, payload }) => {
   switch (type) {
@@ -108,15 +57,76 @@ export const selectedProductReducer = (state = {}, { type, payload }) => {
   }
 };
 
-// Selected product reducer here for single product page
-// export const increaseQuantityReducer = (
-//   state = initialState,
-//   { type, payload }
-// ) => {
-//   console.log(state?.cartlistProducts);
-//   switch (type) {
+// Cartlist all products reducer here
+export const cartlistProductReudcer = (
+  state = initialState,
+  { type, payload }
+) => {
+  switch (type) {
+    case ActionTypes.SET_CARTLIST_PRODUCTS:
+      return { ...state.cartlistProducts, cartlistProducts: payload };
 
-//     default:
-//       return state;
-//   }
-// };
+    // add cartlist product here
+    case ActionTypes.ADD_TO_CART:
+      const isExist = state?.cartlistProducts.find(
+        (product) => product.cartedProduct._id === payload.cartedProduct._id
+      );
+      if (isExist) {
+        // just increase the product quantity
+        const increased = state.cartlistProducts.map((product) =>
+          product.cartedProduct._id === payload._id
+            ? { ...product, quantity: product.quantity + 1 }
+            : product
+        );
+        return { ...state, cartlistProducts: increased };
+      } else {
+        const product = payload;
+        const newCart = [...state.cartlistProducts, product];
+        return { ...state, cartlistProducts: newCart };
+      }
+
+    // remove cartlist product here
+    case ActionTypes.REMOVE_CART_PRODUCT:
+      const restCart = state.cartlistProducts.filter(
+        (pd) => pd.cartedProduct._id !== payload
+      );
+
+      return { ...state, cartlistProducts: restCart };
+    default:
+      return state;
+  }
+};
+
+// Wishlist products reducer here
+export const wishlistProductReudcer = (
+  state = initialState,
+  { type, payload }
+) => {
+  switch (type) {
+    case ActionTypes.SET_WISHLIST_PRODUCTS:
+      return { ...state, wishlistProducts: payload };
+
+    // add wishlist product here
+    case ActionTypes.ADD_TO_WISH:
+      const isExist = state?.wishlistProducts?.find(
+        (product) => product.cartedProduct._id === payload.cartedProduct._id
+      );
+      if (isExist) {
+        return state;
+      } else {
+        const product = payload;
+        const newWish = [...state.wishlistProducts, product];
+        return { ...state, wishlistProducts: newWish };
+      }
+
+    // remove wishlist product here
+    case ActionTypes.REMOVE_WISH_PRODUCT:
+      const restWish = state.wishlistProducts.filter(
+        (pd) => pd._id !== payload
+      );
+      return { ...state, wishlistProducts: restWish };
+
+    default:
+      return state;
+  }
+};

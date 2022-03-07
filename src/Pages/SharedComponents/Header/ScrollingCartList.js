@@ -68,17 +68,21 @@ const ScrollingCartList = ({ cartProductsList }) => {
                     </Typography>
                   </Grid>
                   <Grid item md={1} xs={1}>
-                    <button
-                      className="scrollingItemCrossBtn"
-                      onClick={() => {
-                        handleDelete(
-                          `deleteCartlistProducts/${cartProduct?._id}`,
-                          cartProduct.cartedProduct._id
-                        );
-                      }}
-                    >
-                      &times;
-                    </button>
+                    {cartProduct?._id ? (
+                      <button
+                        className="scrollingItemCrossBtn"
+                        onClick={() => {
+                          handleDelete(
+                            `deleteCartlistProducts/${cartProduct?._id}`,
+                            cartProduct.cartedProduct._id
+                          );
+                        }}
+                      >
+                        &times;
+                      </button>
+                    ) : (
+                      <></>
+                    )}
                   </Grid>
                 </Grid>
               ))}

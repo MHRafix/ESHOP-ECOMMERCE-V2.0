@@ -1,7 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { removeProduct } from "../redux/actions/productActions";
+import {
+  removeProduct,
+  removeWishlistProduct,
+} from "../redux/actions/productActions";
 
 const useDelete = () => {
   const [deleting, setDeleting] = useState(false);
@@ -14,14 +17,20 @@ const useDelete = () => {
     const cnfDel = window.confirm("Are you sure ?");
     if (cnfDel) {
       setDeleting(true);
-      dispatch(removeProduct(id));
+
+      // remove from redux store depend on url
+      const cutUrl = url.slice(0, 22);
+      if (cutUrl === "deleteWishlistProducts") {
+        dispatch(removeWishlistProduct(id));
+      } else {
+        dispatch(removeProduct(id));
+      }
 
       const deleteUrl = `https://eshopy-server.herokuapp.com/${url}`;
       axios
         .delete(deleteUrl)
         .then((res) => {
           if (res?.data?.result?.n === 1) {
-            console.log("Deleted!");
             setDeleting(false);
             setDeleteAlertText("Product successfully deleted!");
             setDeleteSuccess(true);

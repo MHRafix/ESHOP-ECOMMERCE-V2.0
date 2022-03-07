@@ -6,15 +6,19 @@ import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
 import Rating from "react-rating";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import useAuth from "../../../../../CustomHooks/useAuth";
-import { addProductToCart } from "../../../../../redux/actions/productActions";
+import {
+  addProductToCart,
+  addProductToWish,
+} from "../../../../../redux/actions/productActions";
 // import useAnimation from '../../../../../CustomHooks/useAnimation';
 import ProductQuickView from "../../../../SharedComponents/Modals/ProductQuickView";
 
-const Card = ({ data, col, handlePost }) => {
+const Card = ({ data, col, handlePost, handleUpdating }) => {
   const [quickView, setQuickView] = useState(false);
+  const dispatch = useDispatch();
   const history = useHistory();
 
   // Import useAuth from context api
@@ -47,7 +51,24 @@ const Card = ({ data, col, handlePost }) => {
     userEmail: user?.email,
   };
 
-  const dispatch = useDispatch();
+  // check the selected product is exist in cart or not
+  const allCartProducts = useSelector(
+    (state) => state.cartlistAllProducts.cartlistProducts
+  );
+
+  const handleChecker = () => {
+    const isExist = allCartProducts.find(
+      (cart) => cart.cartedProduct._id === _id
+    );
+
+    if (isExist) {
+      dispatch(addProductToCart(cartedProductData));
+      handleUpdating(cartedProductData, "updateCartProduct");
+    } else {
+      dispatch(addProductToCart(cartedProductData));
+      handlePost(cartedProductData, "addToCartList");
+    }
+  };
 
   return (
     <Grid item mb={4} xs={12} md={col} data-aos="fade-up">
@@ -72,8 +93,12 @@ const Card = ({ data, col, handlePost }) => {
             <button
               className="wishAndView"
               onClick={() => {
-                // ADD_WISHLIST_PRODUCTS(cartedProductData);
-                handlePost(cartedProductData, "addToWishList");
+                if (user?.email) {
+                  dispatch(addProductToWish(cartedProductData));
+                  handlePost(cartedProductData, "addToWishList");
+                } else {
+                  history.replace("/userAccount/user/login");
+                }
               }}
             >
               <FavoriteBorderIcon sx={{ fontSize: 20, paddingTop: "5px" }} />
@@ -82,8 +107,7 @@ const Card = ({ data, col, handlePost }) => {
               className="cartBtn"
               onClick={() => {
                 if (user?.email) {
-                  dispatch(addProductToCart(cartedProductData));
-                  handlePost(cartedProductData, "addToCartList");
+                  handleChecker();
                 } else {
                   history.replace("/userAccount/user/login");
                 }

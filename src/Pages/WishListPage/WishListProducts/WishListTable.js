@@ -1,10 +1,12 @@
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Alert, Grid, Snackbar, Typography } from "@mui/material";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import useAuth from "../../../CustomHooks/useAuth";
 import useDelete from "../../../CustomHooks/useDelete";
 import usePost from "../../../CustomHooks/usePost";
 import GifLoader from "../../../Images/ICONS/loadingGif.gif";
+import { addProductToCart } from "../../../redux/actions/productActions";
 
 const WishListTable = ({ data }) => {
   const presentPath = window.location.pathname;
@@ -46,6 +48,7 @@ const WishListTable = ({ data }) => {
     setTimeout(hideAlert, 5000);
   }
 
+  const dispatch = useDispatch();
   return (
     <Grid container sx={{ alignItems: "center" }}>
       <Snackbar open={success} autoHideDuration={6000}>
@@ -164,7 +167,10 @@ const WishListTable = ({ data }) => {
         >
           <button
             className="wishListCartBtn"
-            onClick={() => handlePost(cartedProductData, "addToCartList")}
+            onClick={() => {
+              dispatch(addProductToCart(cartedProductData));
+              handlePost(cartedProductData, "addToWishList");
+            }}
           >
             <ShoppingCartOutlinedIcon
               sx={{ fontSize: 15, paddingTop: "5px" }}
@@ -221,11 +227,12 @@ const WishListTable = ({ data }) => {
           className="crossBtn"
           onClick={() => {
             if (presentPath === "/cartlist") {
-              handleDelete(`deleteCartlistProducts/${data._id}`, data._id);
-              // handleDelete(`deleteCartlistProducts/${data._id}`);
+              handleDelete(
+                `deleteCartlistProducts/${data._id}`,
+                cartedProductData.cartedProduct._id
+              );
             } else if (presentPath === "/wishlist") {
-              // handleDelete(`deleteWishlistProducts/${data._id}`);
-              handleDelete(`deleteCartlistProducts/${data._id}`, data._id);
+              handleDelete(`deleteWishlistProducts/${data._id}`, data._id);
             }
           }}
         >
