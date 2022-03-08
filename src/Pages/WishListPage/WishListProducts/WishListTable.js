@@ -1,12 +1,13 @@
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Alert, Grid, Snackbar, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import useAuth from "../../../CustomHooks/useAuth";
 import useDelete from "../../../CustomHooks/useDelete";
+import useHandleCheck from "../../../CustomHooks/useHandleCheck";
 import usePost from "../../../CustomHooks/usePost";
+import useUpdate from "../../../CustomHooks/useUpdate";
 import GifLoader from "../../../Images/ICONS/loadingGif.gif";
-import { addProductToCart } from "../../../redux/actions/productActions";
 
 const WishListTable = ({ data }) => {
   const presentPath = window.location.pathname;
@@ -15,10 +16,21 @@ const WishListTable = ({ data }) => {
   let productQuantity = data.quantity;
   const [quantity, setQuantity] = useState(Number(productQuantity));
   const { user } = useAuth();
+  const history = useHistory();
+
   // Move wishList product to cart list
   const { posting, handlePost, success, setSuccess, alertText } = usePost();
+
+  // handle update cart product here
+  const { handleUpdating, updating, updated, setUpdated, updateText } =
+    useUpdate();
+
+  // import handle checker here
+  const { handleChecker } = useHandleCheck();
+
   const cartedProductData = {
     cartedProduct: data.cartedProduct,
+    uniqueId: data?._id,
     size: "M",
     quantity: 1,
     userEmail: user?.email,
@@ -37,21 +49,24 @@ const WishListTable = ({ data }) => {
   function hideAlert() {
     if (success) {
       setSuccess(false);
+    } else if (updated) {
+      setUpdated(false);
     } else if (deleteSuccess) {
       setDeleteSuccess(false);
     }
   }
 
-  if (success) {
-    setTimeout(hideAlert, 5000);
-  } else if (deleteSuccess) {
+  // auto hide alert handle here
+  if (success || deleteSuccess || updated) {
     setTimeout(hideAlert, 5000);
   }
 
-  const dispatch = useDispatch();
   return (
     <Grid container sx={{ alignItems: "center" }}>
-      <Snackbar open={success} autoHideDuration={6000}>
+      <Snackbar
+        open={success || updated || deleteSuccess}
+        autoHideDuration={6000}
+      >
         <Alert
           severity="success"
           sx={{
@@ -63,22 +78,11 @@ const WishListTable = ({ data }) => {
             fontSize: { xs: "13px", md: "18px" },
           }}
         >
-          {alertText}
-        </Alert>
-      </Snackbar>
-      <Snackbar open={deleteSuccess} autoHideDuration={6000}>
-        <Alert
-          severity="success"
-          sx={{
-            width: "100%",
-            background: "rgb(46 125 50)",
-            color: "white",
-            fontFamily: "Poppins",
-            fontWeight: 400,
-            fontSize: { xs: "13px", md: "18px" },
-          }}
-        >
-          {deleteAlertText}
+          {success || updated ? (
+            <>{success ? alertText : updateText}</>
+          ) : (
+            deleteAlertText
+          )}
         </Alert>
       </Snackbar>
       <Grid
@@ -168,8 +172,16 @@ const WishListTable = ({ data }) => {
           <button
             className="wishListCartBtn"
             onClick={() => {
-              dispatch(addProductToCart(cartedProductData));
-              handlePost(cartedProductData, "addToWishList");
+              if (user?.email) {
+                handleChecker(
+                  handleUpdating,
+                  handlePost,
+                  cartedProductData,
+                  data?.cartedProduct?._id
+                );
+              } else {
+                history.replace("/userAccount/user/login");
+              }
             }}
           >
             <ShoppingCartOutlinedIcon
@@ -239,16 +251,12 @@ const WishListTable = ({ data }) => {
           &times;
         </button>
       </Grid>
-      {posting && (
+      {posting || updating || deleting ? (
         <div className="gifLoader">
           <img className="gif" src={GifLoader} alt="loader" />
         </div>
-      )}
-
-      {deleting && (
-        <div className="gifLoader">
-          <img className="gif" src={GifLoader} alt="loader" />
-        </div>
+      ) : (
+        <></>
       )}
     </Grid>
   );

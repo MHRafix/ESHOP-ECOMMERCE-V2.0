@@ -6,22 +6,17 @@ import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
 import Rating from "react-rating";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import useAuth from "../../../../../CustomHooks/useAuth";
-import {
-  addProductToCart,
-  addProductToWish,
-} from "../../../../../redux/actions/productActions";
-// import useAnimation from '../../../../../CustomHooks/useAnimation';
+import useHandleCheck from "../../../../../CustomHooks/useHandleCheck";
+import { addProductToWish } from "../../../../../redux/actions/productActions";
 import ProductQuickView from "../../../../SharedComponents/Modals/ProductQuickView";
 
 const Card = ({ data, col, handlePost, handleUpdating }) => {
   const [quickView, setQuickView] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
-
-  // Import useAuth from context api
   const { user } = useAuth();
 
   // Let's destucturing the product data from the data object
@@ -46,29 +41,14 @@ const Card = ({ data, col, handlePost, handleUpdating }) => {
   // Carted product data saved  to the database
   const cartedProductData = {
     cartedProduct: data,
+    uniqueId: _id,
     size: "M",
     quantity: 1,
     userEmail: user?.email,
   };
 
-  // check the selected product is exist in cart or not
-  const allCartProducts = useSelector(
-    (state) => state.cartlistAllProducts.cartlistProducts
-  );
-
-  const handleChecker = () => {
-    const isExist = allCartProducts.find(
-      (cart) => cart.cartedProduct._id === _id
-    );
-
-    if (isExist) {
-      dispatch(addProductToCart(cartedProductData));
-      handleUpdating(cartedProductData, "updateCartProduct");
-    } else {
-      dispatch(addProductToCart(cartedProductData));
-      handlePost(cartedProductData, "addToCartList");
-    }
-  };
+  // import handle cahecker here
+  const { handleChecker } = useHandleCheck();
 
   return (
     <Grid item mb={4} xs={12} md={col} data-aos="fade-up">
@@ -107,7 +87,12 @@ const Card = ({ data, col, handlePost, handleUpdating }) => {
               className="cartBtn"
               onClick={() => {
                 if (user?.email) {
-                  handleChecker();
+                  handleChecker(
+                    handleUpdating,
+                    handlePost,
+                    cartedProductData,
+                    _id
+                  );
                 } else {
                   history.replace("/userAccount/user/login");
                 }

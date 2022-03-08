@@ -18,20 +18,22 @@ const BasicProducts = () => {
   // Carted product data update here
   const { handleUpdating, updating, updated, setUpdated, updateText } =
     useUpdate();
-
   // Hide alert here
   function hideAlert() {
-    setSuccess(false);
-    setUpdated(false);
+    if (success) {
+      setSuccess(false);
+    } else {
+      setUpdated(false);
+    }
   }
 
-  if (success) {
+  if (success || updated) {
     setTimeout(hideAlert, 5000);
   }
 
   return (
     <Grid container spacing={2}>
-      <Snackbar open={success || updated} autoHideDuration={6000}>
+      <Snackbar open={success || updated}>
         <Alert
           severity="success"
           sx={{

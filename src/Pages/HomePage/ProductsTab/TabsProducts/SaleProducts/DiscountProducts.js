@@ -21,11 +21,14 @@ const DiscountProducts = () => {
 
   // Hide alert here
   function hideAlert() {
-    setSuccess(false);
-    setUpdated(false);
+    if (success) {
+      setSuccess(false);
+    } else {
+      setUpdated(false);
+    }
   }
 
-  if (success) {
+  if (success || updated) {
     setTimeout(hideAlert, 5000);
   }
   return (

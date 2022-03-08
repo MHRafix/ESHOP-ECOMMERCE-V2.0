@@ -5,19 +5,18 @@ import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 import { Grid, Radio, Typography } from "@mui/material";
 import React, { useState } from "react";
 import Rating from "react-rating";
-import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import useAuth from "../../../../CustomHooks/useAuth";
-import { addProductToCart } from "../../../../redux/actions/productActions";
+import useHandleCheck from "../../../../CustomHooks/useHandleCheck";
 
-const ProductDetails = ({ productDetails, handlePost }) => {
+const ProductDetails = ({ productDetails, handlePost, handleUpdating }) => {
   const { user } = useAuth();
   const [quantity, setQuantity] = useState(1);
-  const dispatch = useDispatch();
   const history = useHistory();
 
   // Let's destructuring the data from the productDetails object
   const {
+    _id,
     productTitle,
     regularPrice,
     salePrice,
@@ -26,7 +25,7 @@ const ProductDetails = ({ productDetails, handlePost }) => {
     category,
   } = productDetails;
 
-  // Asing initial size to the state
+  // Assign initial size to the state
   let initialSize;
   if (sizes?.length) {
     initialSize = sizes[0];
@@ -51,10 +50,14 @@ const ProductDetails = ({ productDetails, handlePost }) => {
   // Carted product data saved  to the database
   const cartedProductData = {
     cartedProduct: productDetails,
+    uniqueId: _id,
     size: selectedSize,
     quantity: quantity,
     userEmail: user?.email,
   };
+
+  // import handle cahecker here
+  const { handleChecker } = useHandleCheck();
 
   return (
     <Grid item xs={12} md={6}>
@@ -203,8 +206,12 @@ const ProductDetails = ({ productDetails, handlePost }) => {
             className="addToCartBtn"
             onClick={() => {
               if (user?.email) {
-                dispatch(addProductToCart(cartedProductData));
-                handlePost(cartedProductData, "addToCartList");
+                handleChecker(
+                  handleUpdating,
+                  handlePost,
+                  cartedProductData,
+                  _id
+                );
               } else {
                 history.replace("/userAccount/user/login");
               }

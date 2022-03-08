@@ -5,6 +5,7 @@ import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import usePost from "../../../CustomHooks/usePost";
+import useUpdate from "../../../CustomHooks/useUpdate";
 import GifLoader from "../../../Images/ICONS/loadingGif.gif";
 import ProductDetails from "../../SingleProductPage/SingleProductInfo/ProductDetails/ProductDetails";
 import ProductSlider from "../../SingleProductPage/SingleProductInfo/ProductSlider.js/ProductSlider";
@@ -28,15 +29,22 @@ function ProductQuickView({ open, data, setOpen }) {
   // Import data from custom hooks
   const { handlePost, posting, success, setSuccess, alertText } = usePost();
 
+  // import handleUpdating from custom hooks
+  const { handleUpdating, updating, updated, setUpdated, updateText } =
+    useUpdate();
+
   // Hide alert here
   function hideAlert() {
-    setSuccess(false);
+    if (success) {
+      setSuccess(false);
+    } else {
+      setUpdated(false);
+    }
   }
 
-  if (success) {
+  if (success || updated) {
     setTimeout(hideAlert, 5000);
   }
-
   return (
     <>
       <Modal
@@ -76,13 +84,16 @@ function ProductQuickView({ open, data, setOpen }) {
               key={data}
               productDetails={data}
               handlePost={handlePost}
+              handleUpdating={handleUpdating}
             />
-            {posting && (
+            {posting || updating ? (
               <div className="gifLoader">
                 <img className="gif" src={GifLoader} alt="loader" />
               </div>
+            ) : (
+              <></>
             )}
-            <Snackbar open={success} autoHideDuration={6000}>
+            <Snackbar open={success || updated} autoHideDuration={6000}>
               <Alert
                 severity="success"
                 sx={{
@@ -94,7 +105,7 @@ function ProductQuickView({ open, data, setOpen }) {
                   fontSize: { xs: "13px", md: "18px" },
                 }}
               >
-                {alertText}
+                {success ? alertText : updateText}
               </Alert>
             </Snackbar>
           </Grid>

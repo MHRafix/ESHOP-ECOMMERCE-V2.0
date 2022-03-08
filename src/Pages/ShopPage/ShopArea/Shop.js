@@ -15,6 +15,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import useGet from "../../../CustomHooks/useGet";
 import usePost from "../../../CustomHooks/usePost";
+import useUpdate from "../../../CustomHooks/useUpdate";
 import GifLoader from "../../../Images/ICONS/loadingGif.gif";
 import ErrImage from "../../../Images/ICONS/shopingError.jpg";
 // import { SET_QUANTITY } from "../../../redux/contants/action-types";
@@ -43,6 +44,11 @@ const Shop = () => {
   // Carted product data saved  to the database
   const { handlePost, posting, success, setSuccess, alertText } = usePost();
 
+  // handle update cart product to the database here
+  // Carted product data update here
+  const { handleUpdating, updating, updated, setUpdated, updateText } =
+    useUpdate();
+
   // Set layout btn color
   let layout1Color = "#444";
   let layout2Color = "#444";
@@ -63,18 +69,24 @@ const Shop = () => {
 
   // Hide alert here
   function hideAlert() {
-    setSuccess(false);
+    if (success) {
+      setSuccess(false);
+    } else {
+      setUpdated(false);
+    }
   }
 
-  if (success) {
+  if (success || updated) {
     setTimeout(hideAlert, 5000);
   }
+
+  console.log(gotData);
 
   return (
     <section>
       <Container>
         <Grid container spacing={2} sx={{ marginTop: 3 }}>
-          <Snackbar open={success} autoHideDuration={6000}>
+          <Snackbar open={success || updated} autoHideDuration={6000}>
             <Alert
               severity="success"
               sx={{
@@ -86,7 +98,7 @@ const Shop = () => {
                 fontSize: { xs: "13px", md: "18px" },
               }}
             >
-              {alertText}
+              {success ? alertText : updateText}
             </Alert>
           </Snackbar>
           <Grid
@@ -199,14 +211,15 @@ const Shop = () => {
                 />
               ) : (
                 <>
-                  {gotData.length ? (
+                  {gotData?.length ? (
                     <>
-                      {gotData.map((data) => (
+                      {gotData?.map((data) => (
                         <Card
                           key={data._id}
                           data={data}
                           col={layout}
                           handlePost={handlePost}
+                          handleUpdating={handleUpdating}
                         />
                       ))}
                       {gotData.length > 9 && (
@@ -243,10 +256,12 @@ const Shop = () => {
                 </>
               )}
             </Grid>
-            {posting && (
+            {posting || updating ? (
               <div className="gifLoader3">
                 <img className="gif" src={GifLoader} alt="loader" />
               </div>
+            ) : (
+              <></>
             )}
           </Grid>
         </Grid>
