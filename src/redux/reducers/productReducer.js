@@ -71,18 +71,25 @@ export const cartlistProductReudcer = (
       const isExist = state?.cartlistProducts.find(
         (product) => product.cartedProduct._id === payload.cartedProduct._id
       );
+      console.log(isExist);
+
       if (isExist) {
-        // just increase the product quantity
-        const increased = state.cartlistProducts.map((product) =>
-          product.cartedProduct._id === payload._id
-            ? { ...product, quantity: product.quantity + 1 }
-            : product
+        // update seleceted product quantity here
+        const restProducts = state.cartlistProducts.filter(
+          (product) => product.uniqueId !== payload.cartedProduct._id
         );
-        return { ...state, cartlistProducts: increased };
+        console.log(payload);
+        // define seleceted product here
+        let selectedProduct = state.cartlistProducts.find(
+          (product) => product.uniqueId === payload.cartedProduct._id
+        );
+        selectedProduct.quantity = selectedProduct.quantity + 1;
+        const updatedCart = [...restProducts, selectedProduct];
+        return { ...state.cartlistProducts, cartlistProducts: updatedCart };
       } else {
         const product = payload;
         const newCart = [...state.cartlistProducts, product];
-        return { ...state, cartlistProducts: newCart };
+        return { ...state.cartlistProducts, cartlistProducts: newCart };
       }
 
     // remove cartlist product here

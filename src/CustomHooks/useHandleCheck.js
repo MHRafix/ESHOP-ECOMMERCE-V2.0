@@ -17,8 +17,6 @@ const useHandleCheck = () => {
     cartedProductData,
     _id
   ) => {
-    console.log(_id, cartedProductData);
-
     const isExist = allCartProducts.find(
       (cart) => cart.cartedProduct._id === _id
     );

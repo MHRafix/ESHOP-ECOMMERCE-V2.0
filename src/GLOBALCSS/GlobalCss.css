@@ -839,6 +839,9 @@ span.columnData {
 }
 
 @media only screen and (max-width: 425px) {
+  .scrollingITems {
+    right: 3%;
+  }
   span.orderStatus {
     padding: 2px 5px;
     font-size: 8px;
@@ -895,6 +898,10 @@ span.columnData {
 }
 
 @media only screen and (max-width: 375px) {
+  .scrollingITems {
+    right: 3%;
+  }
+
   .sliderWrapper {
     margin-top: 50px;
   }
