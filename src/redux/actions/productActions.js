@@ -65,6 +65,11 @@ export const addProductToWish = (product) => {
   return { type: ActionTypes.ADD_TO_WISH, payload: product };
 };
 
+// Increase product quantiy
+export const increaseProductQuantity = (product) => {
+  return { type: ActionTypes.INCREASE_QUANTITY, payload: product };
+};
+
 // Remove product from cartlist
 export const removeProduct = (id) => {
   return {

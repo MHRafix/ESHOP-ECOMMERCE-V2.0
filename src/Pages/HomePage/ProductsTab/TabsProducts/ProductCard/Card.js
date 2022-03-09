@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import Rating from "react-rating";
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import useAnimation from "../../../../../CustomHooks/useAnimation";
 import useAuth from "../../../../../CustomHooks/useAuth";
 import useHandleCheck from "../../../../../CustomHooks/useHandleCheck";
 import { addProductToWish } from "../../../../../redux/actions/productActions";
@@ -18,6 +19,7 @@ const Card = ({ data, col, handlePost, handleUpdating }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { user } = useAuth();
+  useAnimation();
 
   // Let's destucturing the product data from the data object
   const {

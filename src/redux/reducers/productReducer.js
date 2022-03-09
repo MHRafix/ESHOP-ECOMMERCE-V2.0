@@ -71,14 +71,13 @@ export const cartlistProductReudcer = (
       const isExist = state?.cartlistProducts.find(
         (product) => product.cartedProduct._id === payload.cartedProduct._id
       );
-      console.log(isExist);
 
       if (isExist) {
         // update seleceted product quantity here
         const restProducts = state.cartlistProducts.filter(
           (product) => product.uniqueId !== payload.cartedProduct._id
         );
-        console.log(payload);
+
         // define seleceted product here
         let selectedProduct = state.cartlistProducts.find(
           (product) => product.uniqueId === payload.cartedProduct._id
@@ -91,6 +90,21 @@ export const cartlistProductReudcer = (
         const newCart = [...state.cartlistProducts, product];
         return { ...state.cartlistProducts, cartlistProducts: newCart };
       }
+
+    // increase cart product quantity here
+    case ActionTypes.INCREASE_QUANTITY:
+      // update seleceted product quantity here
+      const restProducts = state.cartlistProducts.filter(
+        (product) => product.uniqueId !== payload.cartedProduct._id
+      );
+
+      // define seleceted product here
+      let selectedProduct = state.cartlistProducts.find(
+        (product) => product.uniqueId === payload.cartedProduct._id
+      );
+      selectedProduct.quantity = selectedProduct.quantity + 1;
+      const updatedCart = [...restProducts, selectedProduct];
+      return { ...state.cartlistProducts, cartlistProducts: updatedCart };
 
     // remove cartlist product here
     case ActionTypes.REMOVE_CART_PRODUCT:

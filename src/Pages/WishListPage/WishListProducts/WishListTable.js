@@ -1,6 +1,7 @@
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Alert, Grid, Snackbar, Typography } from "@mui/material";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import useAuth from "../../../CustomHooks/useAuth";
 import useDelete from "../../../CustomHooks/useDelete";
@@ -8,6 +9,7 @@ import useHandleCheck from "../../../CustomHooks/useHandleCheck";
 import usePost from "../../../CustomHooks/usePost";
 import useUpdate from "../../../CustomHooks/useUpdate";
 import GifLoader from "../../../Images/ICONS/loadingGif.gif";
+import { increaseProductQuantity } from "../../../redux/actions/productActions";
 
 const WishListTable = ({ data }) => {
   const presentPath = window.location.pathname;
@@ -17,6 +19,7 @@ const WishListTable = ({ data }) => {
   const [quantity, setQuantity] = useState(Number(productQuantity));
   const { user } = useAuth();
   const history = useHistory();
+  const dispatch = useDispatch();
 
   // Move wishList product to cart list
   const { posting, handlePost, success, setSuccess, alertText } = usePost();
@@ -208,8 +211,12 @@ const WishListTable = ({ data }) => {
           <button
             className="counterBtn"
             onClick={() => {
-              if (quantity === 100) {
-                alert("Maximum quantity must be 10000...!");
+              dispatch(increaseProductQuantity(cartedProductData));
+              handleUpdating(
+                `updateCartProduct/${user?.email}/${data?.cartedProduct?._id}`
+              );
+              if (quantity === 20) {
+                alert("Maximum quantity must be lower than 20...!");
               } else {
                 setQuantity(quantity + 1);
               }

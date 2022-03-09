@@ -80,8 +80,6 @@ const Shop = () => {
     setTimeout(hideAlert, 5000);
   }
 
-  console.log(gotData);
-
   return (
     <section>
       <Container>
@@ -213,7 +211,7 @@ const Shop = () => {
                 <>
                   {gotData?.length ? (
                     <>
-                      {gotData?.map((data) => (
+                      {gotData.map((data) => (
                         <Card
                           key={data._id}
                           data={data}
