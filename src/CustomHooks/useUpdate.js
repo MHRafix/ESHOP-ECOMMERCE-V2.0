@@ -6,12 +6,16 @@ const useUpdate = () => {
   const [updated, setUpdated] = useState(false);
   const [updateText, setUpdateText] = useState("");
 
-  const handleUpdating = (url) => {
+  const handleUpdating = (url, data) => {
     setUpdating(true);
     const postUrl = `https://eshopy-server.herokuapp.com/${url}`;
-    axios.patch(postUrl).then((res) => {
+    axios.patch(postUrl, data).then((res) => {
       if (res?.data?.result?.n === 1) {
-        setUpdateText("Cart successfully updated!");
+        if (url.slice(0, 9) === "addReview") {
+          setUpdateText("Review successfully added!");
+        } else {
+          setUpdateText("Cart successfully updated!");
+        }
         setUpdating(false);
         setUpdated(true);
       }

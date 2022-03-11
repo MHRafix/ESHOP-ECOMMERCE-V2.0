@@ -637,6 +637,132 @@ button.registerTogglerBtn {
   color: var(--btn-bg);
 }
 
+.sizes span.titleOfInfo {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding-right: 20px;
+  border-right: 1px solid #333;
+  margin-right: 15px;
+}
+
+.sizes span.titleOfInfo {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding-right: 20px;
+  border-right: 1px solid #a749ff;
+  margin-right: 15px;
+}
+
+p.productDescription {
+  color: #5e5858;
+  font-size: 17px;
+  letter-spacing: 1px;
+  padding: 10px;
+}
+
+.sizes span.titleOfInfo {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding-right: 20px;
+  border-right: 1px solid #a749ff;
+  margin-right: 15px;
+}
+
+span.sizeName {
+  font-size: 20px;
+  margin: 0px 10px;
+  font-weight: 700;
+}
+
+.sizes {
+  border: 1px solid #a749ff;
+  margin: 20px 0px;
+  padding: 10px 10px;
+}
+
+p.productDescription {
+  color: #5e5858;
+  font-size: 17px;
+  letter-spacing: 1px;
+  padding: 10px;
+}
+
+.singleReview {
+  border: 1px solid #a749ff;
+  width: 400px;
+  height: auto;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 0px 0px 15px 0px;
+}
+
+img.reviwerImage {
+  width: 100%;
+  background: #f1d2d2;
+  border-radius: 70px;
+}
+
+p.reviewDesc {
+  font-size: 13px;
+  color: #322f2f;
+}
+
+.leaveReViewForm {
+  width: 400px;
+  display: block;
+  overflow: hidden;
+}
+
+#inputField {
+  width: 95%;
+  padding: 10px;
+  overflow: hidden;
+  font-size: 14px;
+  overflow: hidden;
+  font-family: "Poppins";
+  letter-spacing: 1px;
+  border: none;
+  outline: none;
+  margin: 10px 0px;
+  border-bottom: 1px solid #dfcece;
+}
+#inputField:focus {
+  border-bottom: 1px solid #a749ff;
+}
+
+button.reviewSubmit {
+  margin-top: 10px;
+  width: 100%;
+  background: var(--btn-bg);
+  color: var(--white-color);
+  border: none;
+  padding: 10px 0px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: "Poppins";
+  letter-spacing: 1px;
+  font-weight: 300;
+}
+
+h2.reviwerName {
+  font-size: 17px;
+}
+
+span.sizeName {
+  font-size: 20px;
+  margin: 0px 10px;
+  font-weight: 700;
+}
+
+.sizes {
+  border: 1px solid #a749ff;
+  margin: 20px 0px;
+  padding: 10px 10px;
+}
+
 #deactiveArea {
   color: #ccc;
 }

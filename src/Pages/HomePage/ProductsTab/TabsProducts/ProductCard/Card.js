@@ -32,13 +32,14 @@ const Card = ({ data, col, handlePost, handleUpdating }) => {
   } = data;
 
   // Let's calculate the average rating and reviews here
-  let averageRating = 0;
   if (ratingsandreviews) {
+    var rattingTotal = 0;
     for (const ratAndRev of ratingsandreviews) {
       let { ratting } = ratAndRev;
-      averageRating = averageRating + ratting;
+      rattingTotal = rattingTotal + Number(ratting);
     }
   }
+  rattingTotal = rattingTotal.toFixed(1);
 
   // Carted product data saved  to the database
   const cartedProductData = {
@@ -134,7 +135,7 @@ const Card = ({ data, col, handlePost, handleUpdating }) => {
             style={{ color: "#ffa900", textAlign: "center" }}
           >
             <Rating
-              initialRating={averageRating / ratingsandreviews?.length}
+              initialRating={rattingTotal / ratingsandreviews?.length}
               emptySymbol={<StarBorderOutlinedIcon />}
               fullSymbol={<StarIcon />}
               readonly
