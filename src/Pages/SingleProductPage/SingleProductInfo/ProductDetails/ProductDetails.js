@@ -4,13 +4,15 @@ import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 import { Grid, Radio, Typography } from "@mui/material";
 import React, { useState } from "react";
 import Rating from "react-rating";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import useAuth from "../../../../CustomHooks/useAuth";
 import useHandleCheck from "../../../../CustomHooks/useHandleCheck";
-import ProductsInfoTabMain from "./ProductsInfoTabs/ProductsInfoTabMain";
+import { addProductToWish } from "../../../../redux/actions/productActions";
 
 const ProductDetails = ({ productDetails, handlePost, handleUpdating }) => {
   const { user } = useAuth();
+  const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
   const history = useHistory();
 
@@ -244,6 +246,7 @@ const ProductDetails = ({ productDetails, handlePost, handleUpdating }) => {
               className="wishAndCompareBtn"
               onClick={() => {
                 if (user?.email) {
+                  dispatch(addProductToWish(cartedProductData));
                   handlePost(cartedProductData, "addToWishList");
                 } else {
                   history.replace("/userAccount/user/login");
@@ -267,7 +270,7 @@ const ProductDetails = ({ productDetails, handlePost, handleUpdating }) => {
           </div>
         </div>
       </Grid>
-      <ProductsInfoTabMain extraInfo={productDetails} />
+      {/* <ProductsInfoTabMain extraInfo={productDetails} /> */}
     </>
   );
 };

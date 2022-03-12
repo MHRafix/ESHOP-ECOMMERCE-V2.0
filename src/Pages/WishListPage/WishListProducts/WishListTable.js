@@ -32,8 +32,8 @@ const WishListTable = ({ data }) => {
   const { handleChecker } = useHandleCheck();
 
   const cartedProductData = {
-    cartedProduct: data.cartedProduct,
-    uniqueId: data?._id,
+    cartedProduct: data?.cartedProduct,
+    uniqueId: data?.cartedProduct?._id,
     size: "M",
     quantity: 1,
     userEmail: user?.email,

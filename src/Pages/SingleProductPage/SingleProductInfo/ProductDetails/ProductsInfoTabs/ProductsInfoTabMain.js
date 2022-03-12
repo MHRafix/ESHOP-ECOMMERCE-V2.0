@@ -55,7 +55,7 @@ const ProductsInfoTabMain = ({ extraInfo }) => {
   const TabsList = styled(TabsListUnstyled)`
     min-width: 100%;
     background-color: #fff;
-    box-shadow: 1px 0px 4px 1px #a749ff;
+    box-shadow: 1px 0px 4px 1px #c4b7d1;
     border-radius: 8px;
     margin-bottom: 16px;
     display: flex;

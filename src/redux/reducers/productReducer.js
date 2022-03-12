@@ -75,13 +75,14 @@ export const cartlistProductReudcer = (
       if (isExist) {
         // update seleceted product quantity here
         const restProducts = state.cartlistProducts.filter(
-          (product) => product.uniqueId !== payload.cartedProduct._id
+          (product) => product.cartedProduct._id !== payload.cartedProduct._id
         );
 
         // define seleceted product here
         let selectedProduct = state.cartlistProducts.find(
-          (product) => product.uniqueId === payload.cartedProduct._id
+          (product) => product.cartedProduct._id === payload.cartedProduct._id
         );
+
         selectedProduct.quantity = selectedProduct.quantity + 1;
         const updatedCart = [...restProducts, selectedProduct];
         return { ...state.cartlistProducts, cartlistProducts: updatedCart };
