@@ -125,6 +125,7 @@ const Card = ({ data, col, handlePost, handleUpdating }) => {
                 fontWeight: 400,
                 letterSpacing: 1,
                 marginBottom: "5px",
+                textTransform: "capitalize",
               }}
             >
               {productTitle}

@@ -25,7 +25,7 @@ import Sidebar from "../Sidebar/Sidebar";
 
 const Shop = () => {
   // Import data from the customhooks
-  const [dependency, setDependency] = useState("products");
+  const [dependency, setDependency] = useState("shopProducts");
   const [layout, setLayout] = useState(4);
 
   // Import product data from redux using custom hooks
@@ -220,7 +220,7 @@ const Shop = () => {
                           handleUpdating={handleUpdating}
                         />
                       ))}
-                      {gotData.length > 9 && (
+                      {gotData.length > 50 && (
                         <div
                           className="pagination"
                           style={{

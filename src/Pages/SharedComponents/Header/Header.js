@@ -62,10 +62,16 @@ const Header = () => {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>
-        <Link to="/userAccount/user/myProfile">Profile</Link>
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        <Link to="/userAccount/user/login">My account</Link>
+        <Link
+          style={{
+            color: "#555",
+            textDecoration: "none",
+            fontFamily: "Poppins",
+          }}
+          to="/userAccount/user/myProfile"
+        >
+          Profile
+        </Link>
       </MenuItem>
     </Menu>
   );
@@ -289,9 +295,6 @@ const Header = () => {
                   >
                     <ShoppingBagOutlinedIcon />
                   </Badge>
-                  {/* <Badge badgeContent={gotData?.length ? gotData.length : '0'} color="secondary">
-                        <ShoppingBagOutlinedIcon />
-                    </Badge> */}
                 </IconButton>
               </Box>
               <Box sx={{ display: { xs: "flex", md: "none" } }}>

@@ -157,8 +157,11 @@ const WishList = ({ gotData }) => {
                   </Grid>
                 </Grid>
                 {gotData.map((data) => (
-                  <WishListTable data={data} />
+                  <WishListTable key={data._id} data={data} />
                 ))}
+                {presentPath === "/cartlist" && (
+                  <CartTotalCard totalPrice={totalPrice} />
+                )}
               </>
             ) : (
               <div className="errorMessage" style={{ textAlign: "center" }}>
@@ -186,9 +189,6 @@ const WishList = ({ gotData }) => {
                   Add Items
                 </Link>
               </div>
-            )}
-            {presentPath === "/cartlist" && (
-              <CartTotalCard totalPrice={totalPrice} />
             )}
           </Container>
         )}

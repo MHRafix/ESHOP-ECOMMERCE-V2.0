@@ -19,7 +19,6 @@ const ProductsInfoTabMain = ({ extraInfo }) => {
     background-color: transparent;
     width: 100%;
     padding: 12px 16px;
-    margin: 6px 6px;
     border: none;
     border-radius: 5px;
     display: flex;
@@ -70,9 +69,33 @@ const ProductsInfoTabMain = ({ extraInfo }) => {
     <div style={{ width: "100%", marginTop: "20px" }}>
       <TabsUnstyled defaultValue={0}>
         <TabsList>
-          <Tab>Description</Tab>
-          <Tab>Additional Information</Tab>
-          <Tab>Review</Tab>
+          <Tab
+            sx={{
+              fontSize: { xs: 12, md: 16 },
+              fontWeight: 400,
+              fontFamily: "Poppins",
+            }}
+          >
+            Description
+          </Tab>
+          <Tab
+            sx={{
+              fontSize: { xs: 12, md: 16 },
+              fontWeight: 400,
+              fontFamily: "Poppins",
+            }}
+          >
+            Additional Information
+          </Tab>
+          <Tab
+            sx={{
+              fontSize: { xs: 12, md: 16 },
+              fontWeight: 400,
+              fontFamily: "Poppins",
+            }}
+          >
+            Review
+          </Tab>
         </TabsList>
 
         <TabPanel value={0}>

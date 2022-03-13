@@ -60,6 +60,10 @@ html::-webkit-scrollbar-thumb {
   --bg: var(--primary-c);
 }
 
+.userInformationForm {
+  margin-top: 50px;
+}
+
 /* Home slider css */
 .sliderWrapper {
   background: var(--slider-bg);
@@ -67,6 +71,11 @@ html::-webkit-scrollbar-thumb {
   display: block;
   overflow: hidden;
   margin-top: 60px;
+}
+
+img.firstImage {
+  width: 100%;
+  height: 270px;
 }
 
 .sliderDetails {
@@ -860,6 +869,12 @@ span.columnData {
 }
 
 /* Respomsive css here */
+@media only screen and (max-width: 1299px) {
+  .scrollingITems {
+    height: 70%;
+  }
+}
+
 @media only screen and (max-width: 1199px) {
   .formArea {
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
@@ -867,7 +882,9 @@ span.columnData {
     padding: 3% 5%;
     width: 70%;
   }
-
+  .scrollingITems {
+    height: 77%;
+  }
   .breadCrumbLink {
     font-size: 14px;
   }
