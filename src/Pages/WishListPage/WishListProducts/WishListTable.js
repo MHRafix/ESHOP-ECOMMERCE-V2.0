@@ -17,9 +17,16 @@ const WishListTable = ({ data }) => {
     data.cartedProduct;
   let productQuantity = data.quantity;
   const [quantity, setQuantity] = useState(Number(productQuantity));
+
   const { user } = useAuth();
   const history = useHistory();
   const dispatch = useDispatch();
+  let valuedPrice = 1;
+  if (salePrice !== "0") {
+    valuedPrice = salePrice;
+  } else {
+    valuedPrice = regularPrice;
+  }
 
   // Move wishList product to cart list
   const { posting, handlePost, success, setSuccess, alertText } = usePost();
@@ -233,7 +240,7 @@ const WishListTable = ({ data }) => {
           md={2}
           sx={{ textAlign: "center", color: "#555", fontSize: 15 }}
         >
-          ${Math.ceil(quantity * salePrice)}
+          ${Math.ceil(quantity * valuedPrice)}
         </Grid>
       )}
       <Grid

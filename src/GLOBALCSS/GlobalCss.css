@@ -136,8 +136,10 @@ img.firstImage {
 .breadCrumbLink {
   color: #686060;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 14px;
+  font-family: "Poppins";
+  letter-spacing: 1px;
 }
 
 /* Facilities section css here */
@@ -997,9 +999,40 @@ span.columnData {
   .scrollingITems {
     right: 3%;
   }
+
+  p.productDescription {
+    color: #5e5858;
+    font-size: 14px;
+    letter-spacing: 1px;
+    padding: 10px;
+  }
+
   span.orderStatus {
     padding: 2px 5px;
     font-size: 8px;
+  }
+
+  .leaveReViewForm {
+    width: 270px;
+    display: block;
+    overflow: hidden;
+  }
+
+  .singleReview {
+    border: 1px solid #a749ff;
+    width: 270px;
+    height: auto;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0px 0px 15px 0px;
+  }
+
+  button.reviewSubmit {
+    width: 100%;
+  }
+
+  #inputField {
+    width: 95%;
   }
 
   button.orderActions {
@@ -1057,6 +1090,23 @@ span.columnData {
     right: 3%;
   }
 
+  button.reviewSubmit {
+    width: 100%;
+  }
+
+  #inputField {
+    width: 95%;
+  }
+
+  .leaveReViewForm {
+    width: 270px;
+    display: block;
+    overflow: hidden;
+  }
+
+  .singleReview {
+    width: 270px;
+  }
   .sliderWrapper {
     margin-top: 50px;
   }
@@ -1084,6 +1134,10 @@ span.columnData {
   text-align: center;
   margin: auto;
   width: 100%;
+}
+
+#inputField {
+  width: 95%;
 }
 
 .gifLoader2 {

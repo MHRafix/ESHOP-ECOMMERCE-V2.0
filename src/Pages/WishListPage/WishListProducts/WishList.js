@@ -24,7 +24,11 @@ const WishList = ({ gotData }) => {
   // Total price count here
   let totalPrice = 0;
   for (const data of gotData) {
-    const price = Number(data?.cartedProduct?.salePrice * data?.quantity);
+    const salePrice = data?.cartedProduct?.salePrice;
+    const regularPrice = data?.cartedProduct?.regularPrice;
+    const price = Number(
+      salePrice !== "0" ? salePrice : regularPrice * data?.quantity
+    );
     totalPrice = totalPrice + price;
   }
 

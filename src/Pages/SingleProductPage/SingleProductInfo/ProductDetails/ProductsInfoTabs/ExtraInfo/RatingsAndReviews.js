@@ -54,46 +54,59 @@ const RatingsAndReviews = ({ ratingsandreviews }) => {
     >
       <Grid container sx={{ justifyContent: "space-between" }}>
         <Grid item md={5} xs={12}>
-          <div className="allReviews">
-            <h1>All Reviews : {ratingsandreviews.length}</h1> <br />
-            {ratingsandreviews.map((ratingsandreview) => (
-              <div className="singleReview">
-                <Grid container sx={{ justifyContent: "space-evenly" }}>
-                  <Grid item md={2} xs={3}>
-                    <img
-                      src={
-                        ratingsandreview.customerImage
-                          ? ratingsandreview.customerImage
-                          : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDyDSfTyTv1OK4X17b3gjyfTBzA-Cgg0UcLp1nlrmR_X_eB-eGjGmumX9_HwsafglidzM&usqp=CAU"
-                      }
-                      alt="reviwerImage"
-                      className="reviwerImage"
-                    />
-                  </Grid>
-                  <Grid item md={9} xs={8}>
-                    <h2 className="reviwerName">
-                      {ratingsandreview.customerName
-                        ? ratingsandreview.customerName
-                        : "Name not found!"}
-                    </h2>
-                    <span
-                      className="rattis"
-                      style={{ color: "#ffa900", textAlign: "center" }}
-                    >
-                      <Rating
-                        // initialRating={averageRating / ratingsandreviews?.length}
-                        initialRating={ratingsandreview.ratting}
-                        emptySymbol={<StarBorderOutlinedIcon />}
-                        fullSymbol={<StarIcon />}
-                        readonly
+          {ratingsandreviews.length > 0 ? (
+            <div className="allReviews">
+              <h1>All Reviews : {ratingsandreviews.length}</h1> <br />
+              {ratingsandreviews.map((ratingsandreview) => (
+                <div className="singleReview">
+                  <Grid container sx={{ justifyContent: "space-evenly" }}>
+                    <Grid item md={2} xs={3}>
+                      <img
+                        src={
+                          ratingsandreview.customerImage
+                            ? ratingsandreview.customerImage
+                            : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDyDSfTyTv1OK4X17b3gjyfTBzA-Cgg0UcLp1nlrmR_X_eB-eGjGmumX9_HwsafglidzM&usqp=CAU"
+                        }
+                        alt="reviwerImage"
+                        className="reviwerImage"
                       />
-                    </span>
-                    <p className="reviewDesc">{ratingsandreview.review}</p>
+                    </Grid>
+                    <Grid item md={9} xs={8}>
+                      <h2 className="reviwerName">
+                        {ratingsandreview.customerName
+                          ? ratingsandreview.customerName
+                          : "Name not found!"}
+                      </h2>
+                      <span
+                        className="rattis"
+                        style={{ color: "#ffa900", textAlign: "center" }}
+                      >
+                        <Rating
+                          // initialRating={averageRating / ratingsandreviews?.length}
+                          initialRating={ratingsandreview.ratting}
+                          emptySymbol={<StarBorderOutlinedIcon />}
+                          fullSymbol={<StarIcon />}
+                          readonly
+                        />
+                      </span>
+                      <p className="reviewDesc">{ratingsandreview.review}</p>
+                    </Grid>
                   </Grid>
-                </Grid>
-              </div>
-            ))}
-          </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <h1
+              style={{
+                textAlign: "center",
+                margin: "20px 0px",
+                color: "red",
+                letterSpacing: "1px",
+              }}
+            >
+              No Reviews Yet...!
+            </h1>
+          )}
         </Grid>
         <Grid item md={5} xs={12}>
           <div className="leaveReViewForm">

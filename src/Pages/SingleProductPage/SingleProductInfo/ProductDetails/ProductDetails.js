@@ -74,6 +74,7 @@ const ProductDetails = ({ productDetails, handlePost, handleUpdating }) => {
                 fontFamily: "Poppins",
                 color: "#010101",
                 marginBottom: "10px",
+                textTransform: "capitalize",
               }}
             >
               {productTitle}

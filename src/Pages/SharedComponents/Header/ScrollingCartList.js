@@ -7,8 +7,10 @@ import CartIcon from "../../../Images/ICONS/cartIcon.png";
 const ScrollingCartList = ({ cartProductsList }) => {
   let totalAmount = 0;
   for (const product of cartProductsList) {
+    const salePrice = product?.cartedProduct?.salePrice;
+    const regularPrice = product?.cartedProduct?.regularPrice;
     totalAmount =
-      Number(product.cartedProduct.salePrice * product.quantity) +
+      Number(salePrice !== "0" ? salePrice : regularPrice * product?.quantity) +
       Number(totalAmount);
   }
 
@@ -56,15 +58,18 @@ const ScrollingCartList = ({ cartProductsList }) => {
                   <Grid item md={8} xs={8}>
                     <Typography
                       sx={{
-                        fontSize: "15px",
+                        fontSize: "14px",
                         fontFamily: "Poppins",
                         fontWeight: 400,
                         lineHeight: "25px",
+                        textTransform: "capitalize",
                       }}
                     >
                       {cartProduct?.cartedProduct?.productTitle} <br />
                       QTY: {cartProduct?.quantity} <br />$
-                      {cartProduct?.cartedProduct?.salePrice}
+                      {cartProduct?.cartedProduct?.salePrice !== "0"
+                        ? cartProduct?.cartedProduct?.salePrice
+                        : cartProduct?.cartedProduct?.regularPrice}
                     </Typography>
                   </Grid>
                   <Grid item md={1} xs={1}>
