@@ -107,6 +107,22 @@ export const cartlistProductReudcer = (
       const updatedCart = [...restProducts, selectedProduct];
       return { ...state.cartlistProducts, cartlistProducts: updatedCart };
 
+    // deccrease cart product quantity here
+    case ActionTypes.DECCREASE_QUANTITY:
+      // update seleceted product quantity here
+      const allrestProducts = state.cartlistProducts.filter(
+        (product) => product.uniqueId !== payload.cartedProduct._id
+      );
+
+      // define seleceted product here
+      let deselectedProduct = state.cartlistProducts.find(
+        (product) => product.uniqueId === payload.cartedProduct._id
+      );
+
+      deselectedProduct.quantity = deselectedProduct.quantity - 1;
+      const updateCart = [...allrestProducts, deselectedProduct];
+      return { ...state.cartlistProducts, cartlistProducts: updateCart };
+
     // remove cartlist product here
     case ActionTypes.REMOVE_CART_PRODUCT:
       const restCart = state.cartlistProducts.filter(

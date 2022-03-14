@@ -10,8 +10,10 @@ const ScrollingCartList = ({ cartProductsList }) => {
     const salePrice = product?.cartedProduct?.salePrice;
     const regularPrice = product?.cartedProduct?.regularPrice;
     totalAmount =
-      Number(salePrice !== "0" ? salePrice : regularPrice * product?.quantity) +
-      Number(totalAmount);
+      totalAmount +
+      Number(
+        (salePrice !== "0" ? salePrice : regularPrice) * product?.quantity
+      );
   }
 
   // delete products from scrolling cartlist here

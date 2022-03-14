@@ -9,7 +9,10 @@ import useHandleCheck from "../../../CustomHooks/useHandleCheck";
 import usePost from "../../../CustomHooks/usePost";
 import useUpdate from "../../../CustomHooks/useUpdate";
 import GifLoader from "../../../Images/ICONS/loadingGif.gif";
-import { increaseProductQuantity } from "../../../redux/actions/productActions";
+import {
+  decreaseProductQuantity,
+  increaseProductQuantity,
+} from "../../../redux/actions/productActions";
 
 const WishListTable = ({ data }) => {
   const presentPath = window.location.pathname;
@@ -115,7 +118,8 @@ const WishListTable = ({ data }) => {
           textAlign: "center",
           color: "#555",
           fontSize: { xs: 11, md: 15 },
-          display: "block",
+          display: { md: "block", xs: "none" },
+          textTransform: "capitalize",
         }}
       >
         {productTitle}
@@ -206,9 +210,13 @@ const WishListTable = ({ data }) => {
             className="counterBtn"
             onClick={() => {
               if (quantity === 1) {
-                alert("Minimum quantity must be 1...!");
+                alert("Minimum quantity must be bigger than 1...!");
               } else {
                 setQuantity(quantity - 1);
+                dispatch(decreaseProductQuantity(cartedProductData));
+                handleUpdating(
+                  `decCartProductQty/${user?.email}/${data?.cartedProduct?._id}`
+                );
               }
             }}
           >
@@ -218,14 +226,14 @@ const WishListTable = ({ data }) => {
           <button
             className="counterBtn"
             onClick={() => {
-              dispatch(increaseProductQuantity(cartedProductData));
-              handleUpdating(
-                `updateCartProduct/${user?.email}/${data?.cartedProduct?._id}`
-              );
               if (quantity === 20) {
                 alert("Maximum quantity must be lower than 20...!");
               } else {
                 setQuantity(quantity + 1);
+                dispatch(increaseProductQuantity(cartedProductData));
+                handleUpdating(
+                  `incCartProductQty/${user?.email}/${data?.cartedProduct?._id}`
+                );
               }
             }}
           >
@@ -238,7 +246,11 @@ const WishListTable = ({ data }) => {
           item
           xs={2}
           md={2}
-          sx={{ textAlign: "center", color: "#555", fontSize: 15 }}
+          sx={{
+            textAlign: "center",
+            color: "#555",
+            fontSize: { md: 15, xs: 12 },
+          }}
         >
           ${Math.ceil(quantity * valuedPrice)}
         </Grid>

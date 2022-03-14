@@ -70,6 +70,11 @@ export const increaseProductQuantity = (product) => {
   return { type: ActionTypes.INCREASE_QUANTITY, payload: product };
 };
 
+// Increase product quantiy
+export const decreaseProductQuantity = (product) => {
+  return { type: ActionTypes.DECCREASE_QUANTITY, payload: product };
+};
+
 // Remove product from cartlist
 export const removeProduct = (id) => {
   return {

@@ -1000,6 +1000,15 @@ span.columnData {
     right: 3%;
   }
 
+  img.wishListProductimage {
+    width: 45px;
+    height: 45px;
+  }
+
+  span.counterValue {
+    font-size: 12px;
+  }
+
   p.productDescription {
     color: #5e5858;
     font-size: 14px;
@@ -1012,19 +1021,18 @@ span.columnData {
     font-size: 8px;
   }
 
+  .allReviews {
+    margin: 0px 0px 50px 0px;
+  }
+
   .leaveReViewForm {
-    width: 270px;
+    width: 370px;
     display: block;
     overflow: hidden;
   }
 
   .singleReview {
-    border: 1px solid #a749ff;
-    width: 270px;
-    height: auto;
-    padding: 10px;
-    border-radius: 10px;
-    margin: 0px 0px 15px 0px;
+    width: 370px;
   }
 
   button.reviewSubmit {
@@ -1099,14 +1107,13 @@ span.columnData {
   }
 
   .leaveReViewForm {
-    width: 270px;
-    display: block;
-    overflow: hidden;
+    width: 325px;
   }
 
   .singleReview {
-    width: 270px;
+    width: 325px;
   }
+
   .sliderWrapper {
     margin-top: 50px;
   }

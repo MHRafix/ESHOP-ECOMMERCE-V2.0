@@ -27,7 +27,7 @@ const WishList = ({ gotData }) => {
     const salePrice = data?.cartedProduct?.salePrice;
     const regularPrice = data?.cartedProduct?.regularPrice;
     const price = Number(
-      salePrice !== "0" ? salePrice : regularPrice * data?.quantity
+      (salePrice !== "0" ? salePrice : regularPrice) * data?.quantity
     );
     totalPrice = totalPrice + price;
   }
@@ -84,6 +84,7 @@ const WishList = ({ gotData }) => {
                       color: "#555",
                       fontFamily: "Poppins",
                       fontSize: { xs: 10, md: 14 },
+                      display: { md: "block", xs: "none" },
                     }}
                   >
                     {"product name".toUpperCase()}
