@@ -316,7 +316,9 @@ const Header = () => {
       {renderMobileMenu}
       {renderMenu}
       <Grid>
-        {scrollingCartList && <ScrollingCartList cartProductsList={gotData} />}
+        {scrollingCartList && (
+          <ScrollingCartList cartProductsList={gotData} loading={loading} />
+        )}
       </Grid>
     </Box>
   );

@@ -9,7 +9,6 @@ import { useHistory } from "react-router-dom";
 import useAuth from "../../../../CustomHooks/useAuth";
 import useHandleCheck from "../../../../CustomHooks/useHandleCheck";
 import { addProductToWish } from "../../../../redux/actions/productActions";
-import ProductsInfoTabMain from "./ProductsInfoTabs/ProductsInfoTabMain";
 
 const ProductDetails = ({ productDetails, handlePost, handleUpdating }) => {
   const { user } = useAuth();
@@ -272,7 +271,6 @@ const ProductDetails = ({ productDetails, handlePost, handleUpdating }) => {
           </div>
         </div>
       </Grid>
-      <ProductsInfoTabMain extraInfo={productDetails} />
     </>
   );
 };

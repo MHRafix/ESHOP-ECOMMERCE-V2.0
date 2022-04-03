@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import useDelete from "../../../CustomHooks/useDelete";
 import CartIcon from "../../../Images/ICONS/cartIcon.png";
 
-const ScrollingCartList = ({ cartProductsList }) => {
+const ScrollingCartList = ({ cartProductsList, loading }) => {
   let totalAmount = 0;
   for (const product of cartProductsList) {
     const salePrice = product?.cartedProduct?.salePrice;
@@ -45,7 +45,7 @@ const ScrollingCartList = ({ cartProductsList }) => {
           </Alert>
         </Snackbar>
         <Grid container sx={{ padding: "20px 5px" }}>
-          {cartProductsList.length ? (
+          {cartProductsList.length && !loading ? (
             <Grid item md={12} xs={12}>
               {cartProductsList.map((cartProduct) => (
                 <Grid container xs={12} md={12}>

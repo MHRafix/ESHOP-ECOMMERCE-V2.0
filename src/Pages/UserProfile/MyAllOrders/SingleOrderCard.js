@@ -12,13 +12,7 @@ export default function SingleOrderCard({ myOrder }) {
   const { _id, grandTotalPrice, customerInfo, status } = myOrder;
 
   // handle delete orders here
-  const {
-    deleting,
-    handleDelete,
-    deleteSuccess,
-    setDeleteSuccess,
-    deleteAlertText,
-  } = useDelete();
+  const { handleDelete, deleteSuccess, deleteAlertText } = useDelete();
 
   return (
     <>
@@ -45,7 +39,7 @@ export default function SingleOrderCard({ myOrder }) {
             },
           }}
         >
-          {"ORDER_ID_" + " " + _id.slice(10, 15)}
+          {"ORDER_ID_ " + _id.slice(10, 15)}
         </Grid>
         <Grid
           item

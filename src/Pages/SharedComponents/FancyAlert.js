@@ -11,13 +11,12 @@ const FancyAlert = ({ success, updated, alertText, updateText }) => {
           background: "rgb(46 125 50)",
           color: "white",
           fontFamily: "Poppins",
-          fontWeight: 300,
-          fontSize: "10px",
+          fontWeight: 400,
+          fontSize: "14px",
+          letterSpacing: "1px",
         }}
       >
-        <span style={{ fontSize: "12px!important" }}>
-          {success ? alertText : updateText}
-        </span>
+        {success ? alertText : updateText}
       </Alert>
     </Snackbar>
   );

@@ -1,4 +1,4 @@
-import { Alert, Grid, Snackbar } from "@mui/material";
+import { Grid } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -6,9 +6,9 @@ import Typography from "@mui/material/Typography";
 import React from "react";
 import usePost from "../../../CustomHooks/usePost";
 import useUpdate from "../../../CustomHooks/useUpdate";
-import GifLoader from "../../../Images/ICONS/loadingGif.gif";
 import ProductDetails from "../../SingleProductPage/SingleProductInfo/ProductDetails/ProductDetails";
 import ProductSlider from "../../SingleProductPage/SingleProductInfo/ProductSlider.js/ProductSlider";
+import FancyAlert from "../FancyAlert";
 
 const style = {
   position: "absolute",
@@ -27,11 +27,10 @@ const style = {
 
 function ProductQuickView({ open, data, setOpen }) {
   // Import data from custom hooks
-  const { handlePost, posting, success, setSuccess, alertText } = usePost();
+  const { handlePost, success, setSuccess, alertText } = usePost();
 
   // import handleUpdating from custom hooks
-  const { handleUpdating, updating, updated, setUpdated, updateText } =
-    useUpdate();
+  const { handleUpdating, updated, setUpdated, updateText } = useUpdate();
 
   // Hide alert here
   function hideAlert() {
@@ -86,28 +85,12 @@ function ProductQuickView({ open, data, setOpen }) {
               handlePost={handlePost}
               handleUpdating={handleUpdating}
             />
-            {posting || updating ? (
-              <div className="gifLoader">
-                <img className="gif" src={GifLoader} alt="loader" />
-              </div>
-            ) : (
-              <></>
-            )}
-            <Snackbar open={success || updated} autoHideDuration={6000}>
-              <Alert
-                severity="success"
-                sx={{
-                  width: "100%",
-                  background: "rgb(46 125 50)",
-                  color: "white",
-                  fontFamily: "Poppins",
-                  fontWeight: 400,
-                  fontSize: { xs: "13px", md: "18px" },
-                }}
-              >
-                {success ? alertText : updateText}
-              </Alert>
-            </Snackbar>
+            <FancyAlert
+              success={success}
+              updated={updated}
+              alertText={alertText}
+              updateText={updateText}
+            />
           </Grid>
         </Box>
       </Modal>

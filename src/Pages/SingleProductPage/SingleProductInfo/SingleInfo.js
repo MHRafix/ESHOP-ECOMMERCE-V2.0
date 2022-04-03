@@ -1,17 +1,12 @@
-import {
-  Alert,
-  CircularProgress,
-  Container,
-  Grid,
-  Snackbar,
-} from "@mui/material";
+import { CircularProgress, Container, Grid } from "@mui/material";
 import React from "react";
 import usePost from "../../../CustomHooks/usePost";
 import useUpdate from "../../../CustomHooks/useUpdate";
 import BreadCrumb from "../../SharedComponents/BreadCrumb/BreadCrumb";
+import FancyAlert from "../../SharedComponents/FancyAlert";
 import ProductDetails from "./ProductDetails/ProductDetails";
+import ProductsInfoTabMain from "./ProductDetails/ProductsInfoTabs/ProductsInfoTabMain";
 import ProductSlider from "./ProductSlider.js/ProductSlider";
-
 const SingleInfo = ({ data, loading }) => {
   const { productTitle, thumbnails } = data;
   const breadcrumbNavigation = {
@@ -55,21 +50,12 @@ const SingleInfo = ({ data, loading }) => {
       ) : (
         <section style={{ marginTop: "100px" }}>
           <Container>
-            <Snackbar open={success || updated} autoHideDuration={6000}>
-              <Alert
-                severity="success"
-                sx={{
-                  width: "100%",
-                  background: "rgb(46 125 50)",
-                  color: "white",
-                  fontFamily: "Poppins",
-                  fontWeight: 400,
-                  fontSize: { xs: "13px", md: "18px" },
-                }}
-              >
-                {success ? alertText : updateText}
-              </Alert>
-            </Snackbar>
+            <FancyAlert
+              success={success}
+              updated={updated}
+              alertText={alertText}
+              updateText={updateText}
+            />
             <Grid
               container
               spacing={2}
@@ -86,6 +72,7 @@ const SingleInfo = ({ data, loading }) => {
                 handleUpdating={handleUpdating}
               />
             </Grid>
+            <ProductsInfoTabMain extraInfo={data} />
           </Container>
         </section>
       )}

@@ -1,9 +1,10 @@
-import { Alert, Grid, Snackbar } from "@mui/material";
+import { Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import useAuth from "../../../../CustomHooks/useAuth";
 import usePost from "../../../../CustomHooks/usePost";
+import FancyAlert from "../../../SharedComponents/FancyAlert";
 import Table from "../CheckoutTable/Table";
 
 const Form = () => {
@@ -64,21 +65,12 @@ const Form = () => {
 
   return (
     <div className="userInformationForm">
-      <Snackbar open={success} autoHideDuration={6000}>
-        <Alert
-          severity="success"
-          sx={{
-            width: "100%",
-            background: "rgb(46 125 50)",
-            color: "white",
-            fontFamily: "Poppins",
-            fontWeight: 400,
-            fontSize: { xs: "13px", md: "18px" },
-          }}
-        >
-          {alertText}
-        </Alert>
-      </Snackbar>
+      <FancyAlert
+        success={success}
+        updated={""}
+        alertText={alertText}
+        updateText={""}
+      />
       <form onSubmit={handleSubmit(onSubmit)}>
         <h2>Billing Details</h2> <br />
         <Grid

@@ -2,12 +2,10 @@ import CalendarViewMonthOutlinedIcon from "@mui/icons-material/CalendarViewMonth
 import GridViewIcon from "@mui/icons-material/GridView";
 import ViewComfyOutlinedIcon from "@mui/icons-material/ViewComfyOutlined";
 import {
-  Alert,
   CircularProgress,
   Container,
   Grid,
   Pagination,
-  Snackbar,
   Typography,
 } from "@mui/material";
 import Stack from "@mui/material/Stack";
@@ -17,8 +15,8 @@ import useGet from "../../../CustomHooks/useGet";
 import usePost from "../../../CustomHooks/usePost";
 import useUpdate from "../../../CustomHooks/useUpdate";
 import ErrImage from "../../../Images/ICONS/shopingError.jpg";
-// import { SET_QUANTITY } from "../../../redux/contants/action-types";
 import Card from "../../HomePage/ProductsTab/TabsProducts/ProductCard/Card";
+import FancyAlert from "../../SharedComponents/FancyAlert";
 import MobileSidebar from "../Sidebar/MobileSidebar";
 import Sidebar from "../Sidebar/Sidebar";
 
@@ -82,21 +80,12 @@ const Shop = () => {
     <section>
       <Container>
         <Grid container spacing={2} sx={{ marginTop: 3 }}>
-          <Snackbar open={success || updated} autoHideDuration={6000}>
-            <Alert
-              severity="success"
-              sx={{
-                width: "100%",
-                background: "rgb(46 125 50)",
-                color: "white",
-                fontFamily: "Poppins",
-                fontWeight: 400,
-                fontSize: { xs: "13px", md: "18px" },
-              }}
-            >
-              {success ? alertText : updateText}
-            </Alert>
-          </Snackbar>
+          <FancyAlert
+            success={success}
+            updated={updated}
+            alertText={alertText}
+            updateText={updateText}
+          />
           <Grid
             item
             md={3}

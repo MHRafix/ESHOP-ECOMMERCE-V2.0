@@ -1,5 +1,5 @@
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import { Alert, Grid, Snackbar, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -12,6 +12,7 @@ import {
   decreaseProductQuantity,
   increaseProductQuantity,
 } from "../../../redux/actions/productActions";
+import FancyAlert from "../../SharedComponents/FancyAlert";
 
 const WishListTable = ({ data }) => {
   const presentPath = window.location.pathname;
@@ -48,8 +49,7 @@ const WishListTable = ({ data }) => {
   };
 
   // handle delete wishlist products here
-  const { handleDelete, deleteSuccess, setDeleteSuccess, deleteAlertText } =
-    useDelete();
+  const { handleDelete, deleteSuccess, setDeleteSuccess } = useDelete();
 
   // Hide alert here
   function hideAlert() {
@@ -69,28 +69,12 @@ const WishListTable = ({ data }) => {
 
   return (
     <Grid container sx={{ alignItems: "center" }}>
-      <Snackbar
-        open={success || updated || deleteSuccess}
-        autoHideDuration={6000}
-      >
-        <Alert
-          severity="success"
-          sx={{
-            width: "100%",
-            background: "rgb(46 125 50)",
-            color: "white",
-            fontFamily: "Poppins",
-            fontWeight: 400,
-            fontSize: { xs: "13px", md: "18px" },
-          }}
-        >
-          {success || updated ? (
-            <>{success ? alertText : updateText}</>
-          ) : (
-            deleteAlertText
-          )}
-        </Alert>
-      </Snackbar>
+      <FancyAlert
+        success={success}
+        updated={updated}
+        alertText={alertText}
+        updateText={updateText}
+      />
       <Grid
         item
         xs={presentPath === "/wishlist" ? 2.4 : 2}
