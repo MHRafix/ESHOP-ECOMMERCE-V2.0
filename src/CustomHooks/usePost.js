@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 const usePost = () => {
-  const [posting, setPosting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [alertText, setAlertText] = useState("");
   const wishlistProducts = useSelector(
@@ -18,21 +17,20 @@ const usePost = () => {
       if (exist) {
         alert("Product is already exist in wishlist!");
       } else {
-        minimalistPosting(setPosting, data, url, setAlertText, setSuccess);
+        minimalistPosting(data, url, setAlertText, setSuccess);
       }
     } else {
-      minimalistPosting(setPosting, data, url, setAlertText, setSuccess);
+      minimalistPosting(data, url, setAlertText, setSuccess);
     }
   };
 
-  return { handlePost, posting, success, setSuccess, alertText };
+  return { handlePost, success, setSuccess, alertText };
 };
 
 export default usePost;
 
 // make a funtion for posting data to the database here
-const minimalistPosting = (setPosting, data, url, setAlertText, setSuccess) => {
-  setPosting(true);
+const minimalistPosting = (data, url, setAlertText, setSuccess) => {
   const postUrl = `https://eshopy-server.herokuapp.com/${url}`;
   axios.post(postUrl, data).then((res) => {
     if (res?.data?.result?.n === 1) {
@@ -43,7 +41,6 @@ const minimalistPosting = (setPosting, data, url, setAlertText, setSuccess) => {
       } else {
         setAlertText("Product successfully added to wish list!");
       }
-      setPosting(false);
       setSuccess(true);
     }
   });

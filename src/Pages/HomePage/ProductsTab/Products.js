@@ -1,20 +1,10 @@
-import { TabList, TabPanel } from "@mui/lab";
-import TabContext from "@mui/lab/TabContext";
 import { Container, Typography } from "@mui/material";
-import Box from "@mui/material/Box";
-import Tab from "@mui/material/Tab";
 import React, { useState } from "react";
-import BasicProducts from "./TabsProducts/BasicProducts/BasicProducts";
-import NewProducts from "./TabsProducts/NewArrival/NewProducts";
-import DiscountProducts from "./TabsProducts/SaleProducts/DiscountProducts";
+import AllProducts from "./TabsProducts/Products/AllProducts";
 
 const Products = () => {
-  // Tabs controll function here
-  const [value, setValue] = useState("1");
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  const [activeTab, setActiveTab] = useState(1);
+  const [apiDestination, setApiDestination] = useState("newArrivalProducts");
 
   return (
     <section>
@@ -32,67 +22,44 @@ const Products = () => {
               DAILY DEALS!
             </Typography>
           </div>
-          <Box sx={{ width: "100%" }} mt={2}>
-            <TabContext value={value}>
-              <div
-                className="tabs"
-                style={{ width: "100%", margin: "auto", textAlign: "center" }}
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    textAlign: "center",
-                  }}
-                >
-                  <TabList
-                    onChange={handleChange}
-                    aria-label="lab API tabs example"
-                  >
-                    <Tab
-                      sx={{
-                        fontSize: { xs: 11, md: 15 },
-                        fontWeight: 400,
-                        fontFamily: "Poppins",
-                      }}
-                      typography="h3"
-                      label="New Arrival"
-                      value="1"
-                    />
-                    <Tab
-                      sx={{
-                        fontSize: { xs: 11, md: 15 },
-                        fontWeight: 400,
-                        fontFamily: "Poppins",
-                      }}
-                      typography="h3"
-                      label="Fixed Products"
-                      value="2"
-                    />
-                    <Tab
-                      sx={{
-                        fontSize: { xs: 11, md: 15 },
-                        fontWeight: 400,
-                        fontFamily: "Poppins",
-                      }}
-                      typography="h3"
-                      label="Sale Products"
-                      value="3"
-                    />
-                  </TabList>
-                </Box>
-              </div>
-              <TabPanel value="1">
-                <BasicProducts />
-              </TabPanel>
-              <TabPanel value="2">
-                <NewProducts />
-              </TabPanel>
-              <TabPanel value="3">
-                <DiscountProducts />
-              </TabPanel>
-            </TabContext>
-          </Box>
+          <div className="tabBtnsArea">
+            <button
+              onClick={() => {
+                setTimeout(() => {
+                  setApiDestination("products");
+                  setActiveTab(1);
+                }, 200);
+              }}
+              className={activeTab === 1 ? "tabBtnActive" : "tabBtn"}
+            >
+              New Arrival
+            </button>
+            <button
+              onClick={() => {
+                setTimeout(() => {
+                  setApiDestination("newArrivalproducts");
+                  setActiveTab(2);
+                }, 200);
+              }}
+              className={activeTab === 2 ? "tabBtnActive" : "tabBtn"}
+            >
+              Fixed Products
+            </button>
+            <button
+              onClick={() => {
+                setTimeout(() => {
+                  setApiDestination("saleProducts");
+                  setActiveTab(3);
+                }, 200);
+              }}
+              className={activeTab === 3 ? "tabBtnActive" : "tabBtn"}
+            >
+              Sale Products
+            </button>
+          </div>
+          <div className="productsArea">
+            <AllProducts apiDestination={apiDestination} />
+          </div>
         </div>
       </Container>
     </section>

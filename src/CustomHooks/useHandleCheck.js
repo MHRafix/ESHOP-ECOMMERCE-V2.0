@@ -22,8 +22,9 @@ const useHandleCheck = () => {
     );
 
     if (isExist) {
+      console.log(`incCartProductQty/${user?.email}/${_id}`);
       dispatch(addProductToCart(cartedProductData));
-      handleUpdating(`updateCartProduct/${user?.email}/${_id}`);
+      handleUpdating(`incCartProductQty/${user?.email}/${_id}`);
     } else {
       dispatch(addProductToCart(cartedProductData));
       handlePost(cartedProductData, "addToCartList");

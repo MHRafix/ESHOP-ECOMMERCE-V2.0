@@ -8,7 +8,6 @@ import useDelete from "../../../CustomHooks/useDelete";
 import useHandleCheck from "../../../CustomHooks/useHandleCheck";
 import usePost from "../../../CustomHooks/usePost";
 import useUpdate from "../../../CustomHooks/useUpdate";
-import GifLoader from "../../../Images/ICONS/loadingGif.gif";
 import {
   decreaseProductQuantity,
   increaseProductQuantity,
@@ -32,11 +31,10 @@ const WishListTable = ({ data }) => {
   }
 
   // Move wishList product to cart list
-  const { posting, handlePost, success, setSuccess, alertText } = usePost();
+  const { handlePost, success, setSuccess, alertText } = usePost();
 
   // handle update cart product here
-  const { handleUpdating, updating, updated, setUpdated, updateText } =
-    useUpdate();
+  const { handleUpdating, updated, setUpdated, updateText } = useUpdate();
 
   // import handle checker here
   const { handleChecker } = useHandleCheck();
@@ -50,13 +48,8 @@ const WishListTable = ({ data }) => {
   };
 
   // handle delete wishlist products here
-  const {
-    deleting,
-    handleDelete,
-    deleteSuccess,
-    setDeleteSuccess,
-    deleteAlertText,
-  } = useDelete();
+  const { handleDelete, deleteSuccess, setDeleteSuccess, deleteAlertText } =
+    useDelete();
 
   // Hide alert here
   function hideAlert() {
@@ -277,13 +270,6 @@ const WishListTable = ({ data }) => {
           &times;
         </button>
       </Grid>
-      {posting || updating || deleting ? (
-        <div className="gifLoader">
-          <img className="gif" src={GifLoader} alt="loader" />
-        </div>
-      ) : (
-        <></>
-      )}
     </Grid>
   );
 };

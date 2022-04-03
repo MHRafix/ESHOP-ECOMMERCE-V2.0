@@ -1,23 +1,23 @@
-import { Alert, CircularProgress, Grid, Snackbar } from "@mui/material";
+import { CircularProgress, Grid } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
 import useGet from "../../../../../CustomHooks/useGet";
 import usePost from "../../../../../CustomHooks/usePost";
 import useUpdate from "../../../../../CustomHooks/useUpdate";
-import GifLoader from "../../../../../Images/ICONS/loadingGif.gif";
+import FancyAlert from "../../../../SharedComponents/FancyAlert";
 import Card from "../ProductCard/Card";
 
-const BasicProducts = () => {
+const AllProducts = ({ apiDestination }) => {
   // Import product data from redux using custom hooks
   const gotData = useSelector((state) => state.allProducts.products);
-  const { loading } = useGet("products");
+  const { loading } = useGet(apiDestination);
 
   // Carted product data saved  to the database
-  const { handlePost, posting, success, setSuccess, alertText } = usePost();
+  const { handlePost, success, setSuccess, alertText } = usePost();
 
   // Carted product data update here
-  const { handleUpdating, updating, updated, setUpdated, updateText } =
-    useUpdate();
+  const { handleUpdating, updated, setUpdated, updateText } = useUpdate();
+
   // Hide alert here
   function hideAlert() {
     if (success) {
@@ -33,21 +33,13 @@ const BasicProducts = () => {
 
   return (
     <Grid container spacing={2}>
-      <Snackbar open={success || updated}>
-        <Alert
-          severity="success"
-          sx={{
-            width: "100%",
-            background: "rgb(46 125 50)",
-            color: "white",
-            fontFamily: "Poppins",
-            fontWeight: 400,
-            fontSize: { xs: "13px", md: "18px" },
-          }}
-        >
-          {success ? alertText : updateText}
-        </Alert>
-      </Snackbar>
+      <FancyAlert
+        success={success}
+        updated={updated}
+        alertText={alertText}
+        updateText={updateText}
+      />
+
       {loading ? (
         <CircularProgress
           sx={{ textAlign: "center", margin: "auto" }}
@@ -67,15 +59,8 @@ const BasicProducts = () => {
           ))}
         </>
       )}
-      {posting || updating ? (
-        <div className="gifLoader2">
-          <img className="gif" src={GifLoader} alt="loader" />
-        </div>
-      ) : (
-        <></>
-      )}
     </Grid>
   );
 };
 
-export default BasicProducts;
+export default AllProducts;

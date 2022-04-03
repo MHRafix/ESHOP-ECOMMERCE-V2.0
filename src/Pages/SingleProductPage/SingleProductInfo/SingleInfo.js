@@ -8,7 +8,6 @@ import {
 import React from "react";
 import usePost from "../../../CustomHooks/usePost";
 import useUpdate from "../../../CustomHooks/useUpdate";
-import GifLoader from "../../../Images/ICONS/loadingGif.gif";
 import BreadCrumb from "../../SharedComponents/BreadCrumb/BreadCrumb";
 import ProductDetails from "./ProductDetails/ProductDetails";
 import ProductSlider from "./ProductSlider.js/ProductSlider";
@@ -22,11 +21,10 @@ const SingleInfo = ({ data, loading }) => {
   };
 
   // Import usePost for posting carted product data to the data base
-  const { handlePost, posting, success, setSuccess, alertText } = usePost();
+  const { handlePost, success, setSuccess, alertText } = usePost();
 
   // import handleUpdating from custom hooks
-  const { handleUpdating, updating, updated, setUpdated, updateText } =
-    useUpdate();
+  const { handleUpdating, updated, setUpdated, updateText } = useUpdate();
 
   // Hide alert here
   function hideAlert() {
@@ -89,13 +87,6 @@ const SingleInfo = ({ data, loading }) => {
               />
             </Grid>
           </Container>
-          {posting || updating ? (
-            <div className="gifLoader">
-              <img className="gif" src={GifLoader} alt="loader" />
-            </div>
-          ) : (
-            <></>
-          )}
         </section>
       )}
     </section>

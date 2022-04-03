@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import useAuth from "../../../../CustomHooks/useAuth";
 import usePost from "../../../../CustomHooks/usePost";
-import GifLoader from "../../../../Images/ICONS/loadingGif.gif";
 import Table from "../CheckoutTable/Table";
 
 const Form = () => {
@@ -30,7 +29,7 @@ const Form = () => {
   }
 
   // Import usePost from custom hooks
-  const { handlePost, posting, success, setSuccess, alertText } = usePost();
+  const { handlePost, success, setSuccess, alertText } = usePost();
 
   // Handle customer address form here
   const onSubmit = (data) => {
@@ -161,11 +160,6 @@ const Form = () => {
           </Grid>
         </Grid>
       </form>
-      {posting && (
-        <div className="gifLoader">
-          <img className="gif" src={GifLoader} alt="loader" />
-        </div>
-      )}
     </div>
   );
 };

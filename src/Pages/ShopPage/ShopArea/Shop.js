@@ -16,7 +16,6 @@ import { useSelector } from "react-redux";
 import useGet from "../../../CustomHooks/useGet";
 import usePost from "../../../CustomHooks/usePost";
 import useUpdate from "../../../CustomHooks/useUpdate";
-import GifLoader from "../../../Images/ICONS/loadingGif.gif";
 import ErrImage from "../../../Images/ICONS/shopingError.jpg";
 // import { SET_QUANTITY } from "../../../redux/contants/action-types";
 import Card from "../../HomePage/ProductsTab/TabsProducts/ProductCard/Card";
@@ -42,12 +41,11 @@ const Shop = () => {
   };
 
   // Carted product data saved  to the database
-  const { handlePost, posting, success, setSuccess, alertText } = usePost();
+  const { handlePost, success, setSuccess, alertText } = usePost();
 
   // handle update cart product to the database here
   // Carted product data update here
-  const { handleUpdating, updating, updated, setUpdated, updateText } =
-    useUpdate();
+  const { handleUpdating, updated, setUpdated, updateText } = useUpdate();
 
   // Set layout btn color
   let layout1Color = "#444";
@@ -254,13 +252,6 @@ const Shop = () => {
                 </>
               )}
             </Grid>
-            {posting || updating ? (
-              <div className="gifLoader3">
-                <img className="gif" src={GifLoader} alt="loader" />
-              </div>
-            ) : (
-              <></>
-            )}
           </Grid>
         </Grid>
       </Container>
