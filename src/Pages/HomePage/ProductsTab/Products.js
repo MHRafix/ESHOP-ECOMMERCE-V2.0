@@ -4,7 +4,7 @@ import AllProducts from "./TabsProducts/Products/AllProducts";
 
 const Products = () => {
   const [activeTab, setActiveTab] = useState(1);
-  const [apiDestination, setApiDestination] = useState("newArrivalProducts");
+  const [apiDestination, setApiDestination] = useState("products");
 
   return (
     <section>
